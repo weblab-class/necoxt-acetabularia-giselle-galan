@@ -16,6 +16,30 @@ class NavBar extends Component {
   }
 
   render() {
+    return (
+      <nav className="NavBar-container">
+        {/* <div className="NavBar-title u-inlineBlock">Catbook</div> */}
+        <div className="NavBar-linkContainer u-inlineBlock">
+          {this.props.userId ? (
+            <GoogleLogout
+              clientId={GOOGLE_CLIENT_ID}
+              buttonText="Logout"
+              onLogoutSuccess={this.props.handleLogout}
+              onFailure={(err) => console.log(err)}
+              className="NavBar-link NavBar-login"
+            />
+          ) : (
+            <GoogleLogin
+              clientId={GOOGLE_CLIENT_ID}
+              buttonText="Login"
+              onSuccess={this.props.handleLogin}
+              onFailure={(err) => console.log(err)}
+              className="NavBar-link NavBar-login"
+            />
+          )}
+        </div>
+      </nav>
+    );
   }
 }
 
