@@ -11,6 +11,8 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+// const Map = require("./models/map");
+const Checkpoint = require("./models/checkpoint");
 
 // import authentication library
 const auth = require("./auth");
@@ -41,6 +43,24 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
+router.get("/checkpoints", (req, res) => {
+  // get all checkpoints
+  Checkpoint.find({}).then((checkpoints) => res.send(checkpoints));
+});
+
+router.post("/checkpoint", (req, res) => {
+  const newCheckpoint = new Checkpoint({
+    creator_id: req.user._id,
+    creator_name: req.user.name,
+    map: req.body.map,
+    location: req.body.location,
+    description: req.body.description,
+    question: req.body.question,
+    answer: req.body.answer,
+  });
+
+  newCheckpoint.save().then((checkpoint) => res.send(checkpoint));
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
