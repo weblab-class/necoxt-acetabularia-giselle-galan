@@ -6,6 +6,7 @@ import Checkpoint from "../modules/Checkpoint.js";
 
 import "../../utilities.css";
 import "./Create.css";
+import "../foundation.css";
 
 class Create extends Component {
   constructor(props) {
@@ -48,6 +49,13 @@ class Create extends Component {
     let stepList = null;
     return (
       <>
+      <div className="callout primary">
+        <div className="row column text-center">
+          <h1>Create your Treasure Map</h1>
+        </div>
+      </div>
+
+      <div className="grid-container">
         <div className="map" onClick={this.getMousePos}>
           <img src="Campus.jpeg" width="956" height="565" alt=""/>
           <div className="pin">
@@ -55,6 +63,7 @@ class Create extends Component {
           </div>
           <p>{JSON.stringify(this.state.position)}</p>
         </div>
+      </div>
       </>
     );
   }
