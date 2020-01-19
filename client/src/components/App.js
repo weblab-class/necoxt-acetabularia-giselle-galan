@@ -52,11 +52,11 @@ class App extends Component {
   render() {
     return (
       <>
+        {/* <Navbar /> */}
         <Router>
-          <Navbar /> 
-          <Home path="/home" />
-          <Creator path="/creator" />
-          <Seeker path="/seeker" /> 
+          {/* <Home path="/home" /> */}
+          {/* <Creator path="/creator" /> */}
+          {/* <Seeker path="/seeker" />  */}
           <Skeleton
             path="/"
             handleLogin={this.handleLogin}
