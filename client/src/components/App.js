@@ -4,6 +4,7 @@ import NotFound from "./pages/NotFound.js";
 import Home from "./pages/Home.js";
 import Create from "./pages/Create.js";
 import NavBar from "./modules/NavBar.js";
+import Seek from "./pages/Seek.js";
 
 import "../utilities.css";
 
@@ -61,6 +62,7 @@ class App extends Component {
           <Create 
             path="/create/"
           />
+          <Seek path="/seek/" /> 
           <NotFound default />
         </Router>
       </>
