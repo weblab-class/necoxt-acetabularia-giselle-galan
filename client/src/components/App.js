@@ -3,6 +3,7 @@ import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Home from "./pages/Home.js";
 import Create from "./pages/Create.js";
+import NavBar from "./modules/NavBar.js";
 
 import "../utilities.css";
 
@@ -48,13 +49,14 @@ class App extends Component {
   render() {
     return (
       <>
-        {/* <Navbar /> */}
+        <NavBar 
+         handleLogin={this.handleLogin}
+         handleLogout={this.handleLogout}
+         userId={this.state.userId}
+        />
         <Router>
           <Home
-            path="/"
-            handleLogin={this.handleLogin}
-            handleLogout={this.handleLogout}
-            userId={this.state.userId}
+            path="/" 
           />
           <Create 
             path="/create/"
