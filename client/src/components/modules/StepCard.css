@@ -1,0 +1,35 @@
+.card-container {
+    display: flex;
+    flex-direction: column;
+    border: var(--darkgrey) 1px solid;
+    border-radius: var(--xs);
+    margin-top: var(--m);
+    margin-left: var(--m);
+}
+
+.map-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.card-header {
+    margin-top: var(--m);
+    margin-left: var(--m);
+    margin-bottom: var(--m);
+    font-size: 32px;
+    color: #242424;
+    transition: color 0.5s ease;
+    background: none;
+}
+
+.map {
+    z-index: 1;
+}
+
+.checkpoint {
+    position: absolute;
+    z-index: 2;
+    top: 0px;
+    left: 0px;
+}
