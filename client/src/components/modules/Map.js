@@ -13,9 +13,9 @@ class Map extends Component {
   render() {
     // return <img src="pin.png" />;
     return (
-      <div className="">
-        <img src="Campus.jpeg" width="956" height="565" alt=""/>
-        <p>{JSON.stringify(this.props.position)}</p>
+      <div id="mapID">
+        <img src="Campus.jpeg" onClick={() => {this.props.getMousePos(); this.props.getMapPos()}} width="956" height="565" alt=""/>
+        {/* {console.log(this.props.clickPosition, this.props.mapPosition)} */}
       </div>
     );
   }
