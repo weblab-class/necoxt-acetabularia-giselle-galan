@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import "./StepCardSeek.css";
 
 
 /**
@@ -21,12 +22,34 @@ class CheckAnswer extends Component {
     } 
 
     render() { 
-      // return (<div>{this.props.answer}, {this.props.user_input}</div>);
         if (this.props.answer == this.props.user_input) {
-          return (<div>Congratulations, you found the treasure.</div>);
+          return (
+            <div>
+              {/* <link
+                rel="stylesheet"
+                href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"
+              /> */}
+              <br/>
+              <div><b>Congratulations, you found the treasure.</b></div>
+              <div className="grid-x grid-container align-spaced grid-margin-x">
+                {/* <button className="cell shrink button-rounded-hover">GO BACK</button> */}
+                <button className="cell shrink button-rounded-hover">FINISH</button>
+                {/* <button className="cell shrink button-rounded-hover">NEXT STEP</button> */}
+              </div>
+            </div>
+          );
         }
         else {
-          return (<div>You have not found treasure yet.</div>);
+          return (
+            <div>
+              {/* <link
+                rel="stylesheet"
+                href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"
+              /> */}
+              <br/>
+              <div><i>You have not found treasure yet.</i></div>
+            </div>
+          );
         }
     }
 }

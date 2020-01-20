@@ -26,10 +26,10 @@ class StepCardSeek extends Component {
     super(props);
     this.state = {
         userInput: "",
-        clickPos: {
-            x: null,
-            y: null,
-          },
+        // clickPos: {
+        //     x: null,
+        //     y: null,
+        //   },
       // map: "",
       // location: {xPosition: null, yPosition: null},
       // description: "",
@@ -66,17 +66,61 @@ class StepCardSeek extends Component {
       // hard-coded map data: map type = campus map + checkpoint
       // display relevant location data (descript, q&a)
       // check for correctness of answer 
-      <div className="card-container">
-        <div className="card-header">
-          Step 1
+      
+      // card content v0
+      // <div className="card-container">
+      //   <div className="card-header">
+      //     Step 1
+      //   </div>
+    <div>
+      {/* <link
+        rel="stylesheet"
+        href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"
+      /> */}
+      <br/>
+
+      {/* NavBar */}
+      <div className="grid-x grid-container">
+        <nav role="navigation" className="cell">
+          <ul className="breadcrumbs">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/create/">Create</a>
+            </li>
+            <li>
+              <span className="show-for-sr">Current: </span> Seek
+          </li>
+          </ul>
+        </nav>
+      </div>
+
+      {/* card content v1 */}
+      <div className="grid-y grid-container card-container large">
+        <div className="cell card-header">
+          <div className="card-title">Let's find treasure.</div>
+          <div className="card-subtitle">Location 1</div>
         </div>
-        <div className="map-container">
+
+        {/* map and checkpoint v0 */}
+        {/* <div className="map-container">
           <Map position={{x:660, y:590}} className="map"/>
           <div className="checkpoint" style={{top: 660, left: 590}}>
             <Checkpoint position={{x:660, y:590}}/>
           </div> 
-        </div>
-        <div className="description-container">
+        </div> */}
+
+        {/* map and checkpoint v1 */}
+        <div className="cell grid-x grid-container grid-margin-x">
+            <div className="cell large-8 thumbnail map-container" id="mapThumbnailContainerID">
+            </div>
+            <div className="cell large-4">
+            </div>
+          </div>
+
+        {/* description v0 */}
+        {/* <div className="description-container">
           <label> 
             <div>{this.props.description}</div>
             <div>{this.props.question}</div>
@@ -90,7 +134,33 @@ class StepCardSeek extends Component {
             </input>
             <CheckAnswer user_input={this.state.userInput} answer={this.props.answer} /> 
           </label>
-        </div>
+        </div> */}
+
+        {/* description v1  */}
+        <h5>Are you at the right location?</h5>
+          <div className="cell description-container">
+            <label> 
+              <br/>
+              <h6>Location description:</h6>
+              <div>{this.props.description}</div>
+              <br/>
+              <h6>Answer the following question:</h6>
+              <div>{this.props.question}</div>
+              {/* <div>Enter answer:</div> */}
+              <input 
+                value={this.state.userInput}
+                onChange={this.handleChange}
+                type="text" 
+                placeholder="Answer" 
+                required >
+              </input>
+              <CheckAnswer user_input={this.state.userInput} answer={this.props.answer} /> 
+              <br/>
+            </label>
+          </div>
+          <br/>
+
+      </div>
       </div>
     );
   }
