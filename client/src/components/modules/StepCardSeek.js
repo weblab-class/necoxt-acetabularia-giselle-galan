@@ -96,14 +96,14 @@ class StepCardSeek extends Component {
         </nav>
       </div>
 
-      {/* card content v1 */}
+      {/* card content */}
       <div className="grid-y grid-container card-container large">
         <div className="cell card-header">
           <div className="card-title">Let's find treasure.</div>
           <div className="card-subtitle">Location 1</div>
         </div>
 
-        {/* map and checkpoint v0 */}
+        {/* map and checkpoint */}
         {/* <div className="map-container">
           <Map position={{x:660, y:590}} className="map"/>
           <div className="checkpoint" style={{top: 660, left: 590}}>
@@ -111,7 +111,7 @@ class StepCardSeek extends Component {
           </div> 
         </div> */}
 
-        {/* map and checkpoint v1 */}
+        {/* map data */}
         <div className="cell grid-x grid-container grid-margin-x">
             <div className="cell large-8 thumbnail map-container" id="mapThumbnailContainerID">
             </div>
@@ -119,24 +119,7 @@ class StepCardSeek extends Component {
             </div>
           </div>
 
-        {/* description v0 */}
-        {/* <div className="description-container">
-          <label> 
-            <div>{this.props.description}</div>
-            <div>{this.props.question}</div>
-            <div>Enter answer:</div>
-            <input 
-              value={this.state.userInput}
-              onChange={this.handleChange}
-              type="text" 
-              placeholder="Answer" 
-              required >
-            </input>
-            <CheckAnswer user_input={this.state.userInput} answer={this.props.answer} /> 
-          </label>
-        </div> */}
-
-        {/* description v1  */}
+        {/* description  */}
         <h5>Are you at the right location?</h5>
           <div className="cell description-container">
             <label> 

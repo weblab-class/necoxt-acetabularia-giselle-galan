@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "@reach/router";
 
 import "./StepCardSeek.css";
 
@@ -32,9 +33,11 @@ class CheckAnswer extends Component {
               <br/>
               <div><b>Congratulations, you found the treasure.</b></div>
               <div className="grid-x grid-container align-spaced grid-margin-x">
-                {/* <button className="cell shrink button-rounded-hover">GO BACK</button> */}
-                <button className="cell shrink button-rounded-hover">FINISH</button>
-                {/* <button className="cell shrink button-rounded-hover">NEXT STEP</button> */}
+                <Link to="/">
+                  <button
+                    className="cell shrink button-rounded-hover">FINISH
+                  </button>
+                </Link>
               </div>
             </div>
           );
