@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { Link } from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
 import "../../utilities.css";
 import "./Home.css";
+import "../foundation.css"
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
 const GOOGLE_CLIENT_ID = "121479668229-t5j82jrbi9oejh7c8avada226s75bopn.apps.googleusercontent.com";
@@ -20,8 +22,47 @@ class Home extends Component {
 
   render() {
     return (
-      <>
-        {/* {this.props.userId ? (
+        <div class="hero-full-screen">
+
+          <div class="top-content-section">
+            <div class="top-bar">
+              <div class="top-bar-left">
+                <ul class="menu">
+                  {/* <li class="menu-text"><img src="http://placehold.it/75x30" alt="logo" /></li> */}
+                  {/* <li><a href="/">home</a></li> */}
+                  {/* <li><a href="/create/">create</a></li> */}
+                  {/* <li><a href="/seek/">seek</a></li> */}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="middle-content-section">
+            <h1><b>campus treasure maps</b></h1>
+            <h3>x marks the spot</h3>
+            <br/>
+            <Link to="/create/" >
+              <button class="button large warning">create a map</button>
+            </Link>
+            <div></div>
+            <Link to="/seek/" >
+              <button class="button large warning">seek treasure</button>
+            </Link>
+            
+          </div>
+          <div></div>
+
+          {/* <div class="bottom-content-section" data-magellan data-threshold="0">
+            <a href="#main-content-section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 12c0-6.627-5.373-12-12-12s-12 5.373-12 12 5.373 12 12 12 12-5.373 12-12zm-18.005-1.568l1.415-1.414 4.59 4.574 4.579-4.574 1.416 1.414-5.995 5.988-6.005-5.988z"/></svg></a>
+          </div> */}
+
+        </div>
+
+        // {/* <div id="main-content-section" data-magellan-target="main-content-section">stuff</div> */}
+  
+
+    
+        /* {this.props.userId ? (
           <GoogleLogout
             clientId={GOOGLE_CLIENT_ID}
             buttonText="Logout"
@@ -35,8 +76,8 @@ class Home extends Component {
             onSuccess={this.props.handleLogin}
             onFailure={(err) => console.log(err)}
           />
-        )} */}
-        <h1>Good luck on your project :)</h1>
+        )} */
+        /* <h1>Good luck on your project :)</h1>
         <h2> What we provide in this skeleton</h2>
         <ul>
           <li>Google Auth (Skeleton.js & auth.js)</li>
@@ -52,8 +93,7 @@ class Home extends Component {
           <li>Change the Database Name for MongoDB (server.js)</li>
           <li>Add a favicon to your website at the path client/dist/favicon.ico</li>
           <li>Update website title in client/dist/index.html</li>
-        </ul>
-      </>
+        </ul> */
     );
   }
 }

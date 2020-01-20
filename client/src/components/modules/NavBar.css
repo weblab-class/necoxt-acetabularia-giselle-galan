@@ -1,6 +1,7 @@
 .NavBar-container {
-  padding: var(--s) var(--m);
-  background-color: var(--primary);
+  padding: var(--s) var(--s);
+  /* background-color: var(--primary); */
+  background-color: #ffae00
 }
 
 .NavBar-title {
@@ -9,7 +10,7 @@
 }
 
 .NavBar-linkContainer {
-  margin-left: var(--l);
+  margin-left: var(--m);
 }
 
 .NavBar-link,
