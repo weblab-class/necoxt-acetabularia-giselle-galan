@@ -12,7 +12,7 @@ class Checkpoint extends Component {
 
   render() {
     // return <img src="pin.png" />;
-    if (this.props.position.x && this.props.position.y) {
+    if (this.props.clickPosition.x && this.props.clickPosition.y) {
       return (<img src="pin.png" />);
       // return <img src="pin.png" />
     }

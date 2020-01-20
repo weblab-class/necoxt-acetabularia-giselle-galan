@@ -15,7 +15,11 @@ class Create extends Component {
     // Initialize Default State
     this.state = {
       steps: [],
-      position: {
+      clickPosition: {
+        x: null,
+        y: null,
+      },
+      mapPosition: {
         x: null,
         y: null,
       },
@@ -28,7 +32,16 @@ class Create extends Component {
     var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
     var x = e.pageX || e.clientX + scrollX;
     var y = e.pageY || e.clientY + scrollY;
-    this.setState({position: {x: x, y: y,},});
+    this.setState({clickPosition: {x: x, y: y,},});
+  }
+
+  getMapPos = () => {
+    this.setState({
+      mapPosition: {
+        x: document.getElementById('mapThumbnailContainerID').offsetLeft,
+        y: document.getElementById('mapThumbnailContainerID').offsetTop,
+      },
+    });
   }
 
   componentDidMount() {
@@ -46,9 +59,12 @@ class Create extends Component {
     return (
       <>
       <div className="">
-        <div className="" onClick={() => this.getMousePos()}>
+        <div className="">
           <StepCard 
-            position={this.state.position}
+            clickPosition={this.state.clickPosition}
+            mapPosition={this.state.mapPosition}
+            getMousePos={this.getMousePos}
+            getMapPos={this.getMapPos}
           />
         </div>
       </div>
