@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 
 import "./StepCardSeek.css";
+import "../foundation.css"
 
 
 /**
@@ -26,16 +27,14 @@ class CheckAnswer extends Component {
         if (this.props.answer == this.props.user_input) {
           return (
             <div>
-              {/* <link
-                rel="stylesheet"
-                href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"
-              /> */}
               <br/>
               <div><b>Congratulations, you found the treasure.</b></div>
               <div className="grid-x grid-container align-spaced grid-margin-x">
                 <Link to="/">
                   <button
-                    className="cell shrink button-rounded-hover">FINISH
+                    className="cell shrink button-rounded-hover">
+                    {/* className="button large warning"> */}
+                      finish
                   </button>
                 </Link>
               </div>
@@ -45,10 +44,6 @@ class CheckAnswer extends Component {
         else {
           return (
             <div>
-              {/* <link
-                rel="stylesheet"
-                href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"
-              /> */}
               <br/>
               <div><i>You have not found treasure yet.</i></div>
             </div>

@@ -80,7 +80,7 @@ class StepCardSeek extends Component {
       <br/>
 
       {/* NavBar */}
-      <div className="grid-x grid-container">
+      {/* <div className="grid-x grid-container">
         <nav role="navigation" className="cell">
           <ul className="breadcrumbs">
             <li>
@@ -94,7 +94,7 @@ class StepCardSeek extends Component {
           </li>
           </ul>
         </nav>
-      </div>
+      </div> */}
 
       {/* card content */}
       <div className="grid-y grid-container card-container large">
