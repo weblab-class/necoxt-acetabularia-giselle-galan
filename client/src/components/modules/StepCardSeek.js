@@ -4,7 +4,7 @@ import Checkpoint from "./Checkpoint";
 import Map from "./Map";
 import CheckAnswer from "./CheckAnswer.js"
 
-import "./StepCardSeek.css";
+// import "./StepCardSeek.css";
 
 /**
  * Step is a component for displaying the created map

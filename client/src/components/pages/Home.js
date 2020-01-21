@@ -22,13 +22,13 @@ class Home extends Component {
 
   render() {
     return (
-        <div class="hero-full-screen">
+        <div className="hero-full-screen">
 
-          <div class="top-content-section">
-            <div class="top-bar">
-              <div class="top-bar-left">
-                <ul class="menu">
-                  {/* <li class="menu-text"><img src="http://placehold.it/75x30" alt="logo" /></li> */}
+          <div className="top-content-section">
+            <div className="top-bar">
+              <div className="top-bar-left">
+                <ul className="menu">
+                  {/* <li className="menu-text"><img src="http://placehold.it/75x30" alt="logo" /></li> */}
                   {/* <li><a href="/">home</a></li> */}
                   {/* <li><a href="/create/">create</a></li> */}
                   {/* <li><a href="/seek/">seek</a></li> */}
@@ -37,22 +37,22 @@ class Home extends Component {
             </div>
           </div>
 
-          <div class="middle-content-section">
+          <div className="middle-content-section">
             <h1><b>campus treasure maps</b></h1>
             <h3>x marks the spot</h3>
             <br/>
             <Link to="/create/" >
-              <button class="button large warning">create a map</button>
+              <button className="button large warning">create a map</button>
             </Link>
             <div></div>
             <Link to="/seek/" >
-              <button class="button large warning">seek treasure</button>
+              <button className="button large warning">seek treasure</button>
             </Link>
             
           </div>
           <div></div>
 
-          {/* <div class="bottom-content-section" data-magellan data-threshold="0">
+          {/* <div className="bottom-content-section" data-magellan data-threshold="0">
             <a href="#main-content-section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 12c0-6.627-5.373-12-12-12s-12 5.373-12 12 5.373 12 12 12 12-5.373 12-12zm-18.005-1.568l1.415-1.414 4.59 4.574 4.579-4.574 1.416 1.414-5.995 5.988-6.005-5.988z"/></svg></a>
           </div> */}
 
