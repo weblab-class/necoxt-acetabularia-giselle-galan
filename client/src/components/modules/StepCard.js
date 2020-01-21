@@ -24,12 +24,29 @@ import "../foundation.css"
  * @param {string} answer
  * @param {string} currentStepNumber
  * @param {string} totalStepNumber
+ * {
+ * step_id: String,
+ * step: Number,
+ * map: String,
+ * position: {
+ *   x: Number,
+ *   y: Number,
+ * },
+ * description: String,
+ * question: String,
+ * answer: String,
+ * }
  */
 class StepCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mapSelection: "CampusMap", // CampusMap(default), TunnelMap, FloorPlan
+      // mapSelection: "CampusMap", // CampusMap(default), TunnelMap, FloorPlan
+      // position: {
+      //   x: null,
+      //   y: null,
+      // },
+      data: {...this.props.data},
     };
   }
 
@@ -41,25 +58,56 @@ class StepCard extends Component {
     // });
   }
 
+  setPos = (event) => {
+    let e = event || window.event;
+    let scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
+    let scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+    let x = e.pageX || e.clientX + scrollX;
+    let y = e.pageY || e.clientY + scrollY;
+    let xMapContainer = document.getElementById('mapThumbnailContainerID').offsetLeft;
+    let yMapContainer = document.getElementById('mapThumbnailContainerID').offsetTop;
+    // let xMap = document.getElementById('imageID').offsetLeft;
+    // let yMap = document.getElementById('imageID').offsetTop;
+    let xMap = 4; // border from thumbnail
+    let yMap = 4; // border from thumbnail
+    this.setState({
+      ...this.state.data, position: {x: x-xMapContainer-xMap, y: y-yMapContainer-yMap,}
+    });
+  }
+
+  clearCheckpoint = () => {
+    this.setState({
+      ...this.state.data, position: {x: null, y: null,}
+    });
+  }
+
   changeMap = (event) => {
-    this.setState({ mapSelection: event.target.value })
+    this.setState({ 
+      mapSelection: event.target.value 
+    })
   }
 
   sendMapContent = (value) => {
     const body = {
       // creator_id: String,
       // creator_name: String,
+      treasure_id: this.props.treasure_id,
+      step: this.props.step.current,
       map: this.state.mapSelection,
       position: {
-        x: this.props.position.x,
-        y: this.props.position.y,
+        x: this.state.position.x,
+        y: this.state.position.y,
       },
       description: value.descriptionValue,
       question: value.questionValue,
       answer: value.answerValue,
     };
-    post("/api/checkpoint", body);
+    post("/api/treasure", body);
     console.log(body);
+  }
+
+  clickNextStep = () => {
+    
   }
 
   render() {
@@ -98,14 +146,14 @@ class StepCard extends Component {
           <div className="cell grid-x grid-container grid-margin-x">
             <div className="cell large-8 thumbnail map-container" id="mapThumbnailContainerID">
               <Map
-                position={this.props.position}
-                setPos={this.props.setPos}
+                position={this.state.position}
+                setPos={this.setPos}
                 mapSelection={this.state.mapSelection}
                 className="map"
               />
               <Checkpoint
-                position={this.props.position}
-                clearCheckpoint={this.props.clearCheckpoint}
+                position={this.state.position}
+                clearCheckpoint={this.clearCheckpoint}
               />
             </div>
             <div className="cell large-4">

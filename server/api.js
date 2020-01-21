@@ -13,6 +13,7 @@ const express = require("express");
 const User = require("./models/user");
 // const Map = require("./models/map");
 const Checkpoint = require("./models/checkpoint");
+const Treasure = require("./models/treasure");
 
 // import authentication library
 const auth = require("./auth");
@@ -48,10 +49,13 @@ router.get("/checkpoints", (req, res) => {
   Checkpoint.find({}).then((checkpoints) => res.send(checkpoints));
 });
 
-router.post("/checkpoint", (req, res) => {
+router.post("/checkpoint", auth.ensureLoggedIn, (req, res) => {
   const newCheckpoint = new Checkpoint({
-    creator_id: "req.user._id",
-    creator_name: "req.user.name",
+    creator_id: req.user._id,
+    creator_name: req.user.name,
+    checkpoint_id: req.body.checkpoint_id,
+    treasure_id: req.body.treasure_id,
+    step: req.body.step,
     map: req.body.map,
     position: req.body.position,
     description: req.body.description,
@@ -60,6 +64,21 @@ router.post("/checkpoint", (req, res) => {
   });
 
   newCheckpoint.save().then((checkpoint) => res.send(checkpoint));
+});
+
+router.get("/treasures", (req, res) => {
+  // get all treasure
+  Treasure.find({}).then((treasures) => res.send(treasures));
+});
+
+router.post("/treasure", auth.ensureLoggedIn, (req, res) => {
+  const newTreasure = new Treasure({
+    creator_id: req.user._id,
+    creator_name: req.user.name,
+    treasureSteps: req.body,
+  });
+
+  newTreasure.save().then((treasure) => res.send(treasure));
 });
 
 // anything else falls to this "not found" case
