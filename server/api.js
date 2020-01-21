@@ -50,8 +50,8 @@ router.get("/checkpoints", (req, res) => {
 
 router.post("/checkpoint", (req, res) => {
   const newCheckpoint = new Checkpoint({
-    creator_id: req.user._id,
-    creator_name: req.user.name,
+    creator_id: "req.user._id",
+    creator_name: "req.user.name",
     map: req.body.map,
     location: req.body.location,
     description: req.body.description,

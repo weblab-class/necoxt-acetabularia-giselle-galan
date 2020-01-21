@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { get } from "../../utilities";
+import { post } from "../../utilities";
 import Checkpoint from "./Checkpoint";
 import Map from "./Map";
+import Descriptions from "./Descriptions";
 
 import "./StepCard.css";
 import "../foundation.css"
@@ -25,10 +27,7 @@ class StepCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mapPosition: {
-        x: null,
-        y: null,
-      },
+      mapSelection: "CampusMap", // CampusMap(default), TunnelMap, FloorPlan
     };
   }
 
@@ -40,13 +39,26 @@ class StepCard extends Component {
     // });
   }
 
-  // this gets called when the user pushes "Submit", so their
-  // post gets added to the screen right away
-  // addNewComment = (commentObj) => {
-  //   this.setState({
-  //     comments: this.state.comments.concat([commentObj]),
-  //   });
-  // };
+  changeMap = (event) => {
+    this.setState({ mapSelection: event.target.value })
+  }
+
+  sendMapContent = (value) => {
+    const body = {
+      // creator_id: String,
+      // creator_name: String,
+      map: this.state.mapSelection,
+      postion: {
+        x: this.props.position.x,
+        y: this.props.position.y,
+      },
+      description: value.descriptionValue,
+      question: value.questionValue,
+      answer: value.answerValue,
+    };
+    post("/api/checkpoint", body);
+    console.log(body);
+  }
 
   render() {
     return (
@@ -57,7 +69,7 @@ class StepCard extends Component {
           rel="stylesheet"
           href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"
         /> */}
-        <br/>
+        <br />
 
         {/* NavBar */}
         <div className="grid-x grid-container">
@@ -66,10 +78,6 @@ class StepCard extends Component {
               <li>
                 <a href="/">Home</a>
               </li>
-              {/* <li>
-              <a href="#">Create</a>
-            </li> */}
-              {/* <li className="disabled">Gene Splicing</li> */}
               <li>
                 <span className="show-for-sr">Current: </span> Create
             </li>
@@ -87,31 +95,25 @@ class StepCard extends Component {
           {/* Map and Checkpoint */}
           <div className="cell grid-x grid-container grid-margin-x">
             <div className="cell large-8 thumbnail map-container" id="mapThumbnailContainerID">
-              <Map 
-                clickPosition={this.props.clickPosition} 
-                mapPosition={this.props.mapPosition} 
-                getMousePos={this.props.getMousePos} 
-                getMapPos={this.props.getMapPos} 
-                className="map" 
+              <Map
+                position={this.props.position}
+                setPos={this.props.setPos}
+                mapSelection={this.state.mapSelection}
+                className="map"
               />
-              <div 
-                className="checkpoint" 
-                style={{ 
-                  top: this.props.clickPosition.y-this.props.mapPosition.y-48,  // 48 is image height
-                  left: this.props.clickPosition.x-this.props.mapPosition.x-15, // 15 is half image width
-              }}>
-                <Checkpoint clickPosition={this.props.clickPosition} />
-              </div>
-              {/* <Checkpoint position={this.props.position} className="checkpoint"/> */}
+              <Checkpoint
+                position={this.props.position}
+                clearCheckpoint={this.props.clearCheckpoint}
+              />
             </div>
             <div className="cell large-4">
               <h5>Choose your map type</h5>
-              <br/>
+              <br />
               <div className="grid-y grid-container align-centered">
-                <select required >
-                  <option value="state1">Campus Map</option>
-                  <option value="state2">Tunnel Map</option>
-                  <option value="state3">Floor Plan</option>
+                <select onChange={this.changeMap} required >
+                  <option value="CampusMap">Campus Map</option>
+                  <option value="TunnelMap">Tunnel Map</option>
+                  {/* <option value="FloorPlan">Floor Plan</option> */}
                 </select>
                 <p className="or-divider"><span>or</span></p>
                 <label htmlFor="FoldMap" className="button">Upload Your Own Map</label>
@@ -124,19 +126,9 @@ class StepCard extends Component {
           {/* Descriptions */}
           <h5>Tell us a hint to your treasure</h5>
           <div className="cell description-container">
-            <label>
-              <input type="text" placeholder="Description" required ></input>
-              <input type="text" placeholder="Question" required ></input>
-              <input type="text" placeholder="Answer" required ></input>
-              <div className="grid-x grid-container align-spaced grid-margin-x">
-                <button className="cell shrink button-rounded-hover">GO BACK</button>
-                <button className="cell shrink button-rounded-hover">FINISH</button>
-                <button className="cell shrink button-rounded-hover">NEXT STEP</button>
-              </div>
-              
-            </label>
+            <Descriptions onFinish={this.sendMapContent}/>
           </div>
-          <br/>
+          <br />
 
         </div>
       </div>

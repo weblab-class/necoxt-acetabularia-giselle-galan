@@ -12,10 +12,21 @@ class Map extends Component {
 
   render() {
     // return <img src="pin.png" />;
+    let mapMaping = {
+      "CampusMap": ["CampusMap.jpeg", 956, 565],
+      "TunnelMap": ["TunnelMap.png", 4939, 2818],
+      // "FloorPlan": ["CampusMap.jpeg", 956, 565],
+    };
     return (
-      <div id="mapID">
-        <img src="Campus.jpeg" onClick={() => {this.props.getMousePos(); this.props.getMapPos()}} width="956" height="565" alt=""/>
-        {/* {console.log(this.props.clickPosition, this.props.mapPosition)} */}
+      <div id="imageID">
+        <img
+          src={mapMaping[this.props.mapSelection][0]} 
+          onClick={() => this.props.setPos()} 
+          width={mapMaping[this.props.mapSelection][1]} 
+          height={mapMaping[this.props.mapSelection][2]}
+        />
+        {console.log(this.props.position)}
+        {/* {console.log(this.props.mapSelection)} */}
       </div>
     );
   }

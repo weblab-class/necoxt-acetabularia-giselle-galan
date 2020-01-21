@@ -15,32 +15,31 @@ class Create extends Component {
     // Initialize Default State
     this.state = {
       steps: [],
-      clickPosition: {
-        x: null,
-        y: null,
-      },
-      mapPosition: {
+      position: {
         x: null,
         y: null,
       },
     };
   }
 
-  getMousePos = (event) => {
-    var e = event || window.event;
-    var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
-    var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
-    var x = e.pageX || e.clientX + scrollX;
-    var y = e.pageY || e.clientY + scrollY;
-    this.setState({clickPosition: {x: x, y: y,},});
+  setPos = (event) => {
+    let e = event || window.event;
+    let scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
+    let scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+    let x = e.pageX || e.clientX + scrollX;
+    let y = e.pageY || e.clientY + scrollY;
+    let xMapContainer = document.getElementById('mapThumbnailContainerID').offsetLeft;
+    let yMapContainer = document.getElementById('mapThumbnailContainerID').offsetTop;
+    // let xMap = document.getElementById('imageID').offsetLeft;
+    // let yMap = document.getElementById('imageID').offsetTop;
+    let xMap = 4; // border from thumbnail
+    let yMap = 4; // border from thumbnail
+    this.setState({position: {x: x-xMapContainer-xMap, y: y-yMapContainer-yMap,},});
   }
 
-  getMapPos = () => {
+  clearCheckpoint = () => {
     this.setState({
-      mapPosition: {
-        x: document.getElementById('mapThumbnailContainerID').offsetLeft,
-        y: document.getElementById('mapThumbnailContainerID').offsetTop,
-      },
+      position: {x: null, y: null,},
     });
   }
 
@@ -61,10 +60,9 @@ class Create extends Component {
       <div className="">
         <div className="">
           <StepCard 
-            clickPosition={this.state.clickPosition}
-            mapPosition={this.state.mapPosition}
-            getMousePos={this.getMousePos}
-            getMapPos={this.getMapPos}
+            position={this.state.position}
+            setPos={this.setPos}
+            clearCheckpoint={this.clearCheckpoint}
           />
         </div>
       </div>

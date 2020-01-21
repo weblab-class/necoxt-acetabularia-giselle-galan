@@ -4,9 +4,9 @@ const CheckpointSchema = new mongoose.Schema({
   creator_id: String,
   creator_name: String,
   map: String,
-  location: {
-    xPosition: Number,
-    yPosition: Number,
+  postion: {
+    x: Number,
+    y: Number,
   },
   description: String,
   question: String,

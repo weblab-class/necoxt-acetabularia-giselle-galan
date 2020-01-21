@@ -1,0 +1,17 @@
+.reset-button {
+  width: 40px;
+  height: 20px;
+  font-size: small;
+  color: #004E89;
+  background-color: none;
+  border: 1px solid;
+  border-radius: 8px;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  transition-property: color, background-color;
+}
+
+.reset-button:hover, .reset-button:focus, .reset-button:active{
+  background-color: #0E79B2;
+  color: whitesmoke;
+}
