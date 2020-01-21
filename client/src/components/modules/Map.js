@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import CampusMap from "../../public/CampusMap.jpeg";
 import TunnelMap from "../../public/TunnelMap.png";
 
-import "./map.css";
+// import "./map.css";
 
 /**
  * Map is a component that renders Map image
