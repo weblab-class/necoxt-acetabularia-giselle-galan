@@ -32,8 +32,8 @@ class CheckAnswer extends Component {
               <div className="grid-x grid-container align-spaced grid-margin-x">
                 <Link to="/">
                   <button
-                    className="cell shrink button-rounded-hover">
-                    {/* className="button large warning"> */}
+                    // className="cell shrink button-rounded-hover">
+                    className="button large warning">
                       finish
                   </button>
                 </Link>
