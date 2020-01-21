@@ -14,36 +14,63 @@ class Seek extends Component {
         steps: [],
         totalStepNumber: null,
         currentStepNumber: null,
-        mapsData: [],
+        // mapsData: [],
+        mapData: []
       };
     }
-  
+    
+    // filterFunc(maps) (
+
+    // )
+
     componentDidMount() {
       // get map content
-      get("/api/checkpoints").then((mapsDataObjs) => {
-        this.setState({ mapsData: mapsDataObjs })
+      // get("/api/checkpoints").then((mapsDataObjs) => {
+      //   this.setState({ mapsData: mapsDataObjs })
+      // });
+      get(`/api/checkpoint`, { _id: this.props.map_id}).then((mapContentObj) => {
+        this.setState({ mapData: mapContentObj });
+        // console.log(this.state.mapData[0].position);
       });
+      // console.log("test",get(`/api/checkpoint`, { _id: this.props.map_id}));
     }
   
     render() {
-        return (
+      // console.log(this.props.map_id);
+      // console.log(get(`/api/checkpoint`, { _id: this.props.map_id}));
+      // console.log(this.state.mapData);
+      // if (this.state.mapData[0]!=[]) {
+      //   console.log(this.state.mapData[0].position);
+      // }
+      
+      // return null;
+
+        // return (<div>hi</div>
+        if (this.state.mapData.length != 0) {
+          return (
             <>
-            <div className="">
-              <div>
-                {this.state.mapsData.map((mapContent) => (
+              <div className="">
+                <div>
+
                   <StepCardSeek 
-                    map={mapContent.map}
-                    position={mapContent.position}
-                    description={mapContent.description}
-                    question={mapContent.question}
-                    answer={mapContent.answer}
+                    _id={this.props.map_id}
+                    map={this.state.mapData[0].map}
+                    position={this.state.mapData[0].position}
+                    description={this.state.mapData[0].description}
+                    question={this.state.mapData[0].question}
+                    answer={this.state.mapData[0].answer}
                   />
-                ))}
+                  {/* ))} */}
+                </div>
               </div>
-            </div>
             </>
           );
-    }
+        }
+      else {
+        return (<div>loading your treasure map</div>)
+      }
+  }
+  
 }
 
 export default Seek;

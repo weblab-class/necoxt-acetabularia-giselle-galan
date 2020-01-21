@@ -30,7 +30,7 @@ class CheckAnswer extends Component {
               <br/>
               <div><b>Congratulations, you found the treasure.</b></div>
               <div className="grid-x grid-container align-spaced grid-margin-x">
-                <Link to="/">
+                <Link to="/collection">
                   <button
                     // className="cell shrink button-rounded-hover">
                     className="button large warning">

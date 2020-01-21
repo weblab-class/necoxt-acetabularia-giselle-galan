@@ -45,7 +45,12 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 router.get("/checkpoints", (req, res) => {
   // get all checkpoints
-  Checkpoint.find({}).then((checkpoints) => res.send(checkpoints));
+  // Checkpoint.find({ _id: req.query._id }).then((checkpoints) => res.send(checkpoints));
+  Checkpoint.find().then((checkpoints) => res.send(checkpoints));
+});
+
+router.get("/checkpoint", (req, res) => {
+  Checkpoint.find({ _id: req.query._id }).then((checkpoints) => res.send(checkpoints));
 });
 
 router.post("/checkpoint", (req, res) => {

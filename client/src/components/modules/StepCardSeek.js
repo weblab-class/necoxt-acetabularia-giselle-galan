@@ -83,6 +83,8 @@ class StepCardSeek extends Component {
               />
             </div>
             <div className="cell large-4">
+              <h5>{this.props._id}</h5>
+              <h4>HINT: THE ANSWER IS {this.props.answer}</h4>
               <h5>TO-DO</h5>
               <br />
               <div className="grid-y grid-container align-centered">

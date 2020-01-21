@@ -74,7 +74,7 @@ class StepCard extends Component {
         <br />
 
         {/* NavBar */}
-        <div className="grid-x grid-container">
+        {/* <div className="grid-x grid-container">
           <nav role="navigation" className="cell">
             <ul className="breadcrumbs">
               <li>
@@ -85,7 +85,7 @@ class StepCard extends Component {
             </li>
             </ul>
           </nav>
-        </div>
+        </div> */}
 
         {/* Card content */}
         <div className="grid-y grid-container card-container large">
@@ -118,7 +118,9 @@ class StepCard extends Component {
                   {/* <option value="FloorPlan">Floor Plan</option> */}
                 </select>
                 <p className="or-divider"><span>or</span></p>
-                <label htmlFor="FoldMap" className="button">Upload Your Own Map</label>
+                <label htmlFor="FoldMap" 
+                className="button expanded warning">
+                  Upload Your Own Map</label>
               </div>
             </div>
           </div>

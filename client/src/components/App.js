@@ -5,7 +5,7 @@ import Home from "./pages/Home.js";
 import Create from "./pages/Create.js";
 import NavBar from "./modules/NavBar.js";
 import Seek from "./pages/Seek.js";
-// import Collection from "./pages/Collection.js"
+import Collection from "./pages/Collection.js"
 
 import "../utilities.css";
 
@@ -21,7 +21,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: undefined,
+      // userId: undefined,
     };
   }
 
@@ -63,9 +63,9 @@ class App extends Component {
           <Create 
             path="/create/"
           />
-          <Seek path="/seek/" /> 
-          {/* <Seek path="/seek/:map_id" /> */}
-          {/* <Collection path="/collection/" /> */}
+          {/* <Seek path="/seek/" />  */}
+          <Seek path="/seek/:map_id" />
+          <Collection path="/collection/" />
           <NotFound default />
         </Router>
       </>

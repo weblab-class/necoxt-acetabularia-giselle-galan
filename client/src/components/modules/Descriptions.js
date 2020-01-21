@@ -71,16 +71,19 @@ class Descriptions extends Component {
       <div className="grid-x grid-container align-spaced grid-margin-x">
         <button 
           type="button" 
-          className="cell shrink button-rounded-hover"
+          // className="cell shrink button-rounded-hover"
+          className="button large warning"
         >GO BACK</button>
         <button
           type="submit"
-          className="cell shrink button-rounded-hover" 
+          // className="cell shrink button-rounded-hover" 
+          className="button large warning"
           onClick={this.handleFinish}
         >FINISH</button>
         <button
           type="submit"
-          className="cell shrink button-rounded-hover"
+          // className="cell shrink button-rounded-hover"
+          className="button large warning"
         >NEXT STEP</button>
       </div>
       </>

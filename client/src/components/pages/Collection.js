@@ -14,6 +14,7 @@ class Collection extends Component {
         this.state = {
             // totalMaps: null,
             mapsData: [],
+            // currentMap: null,
         };
     }
   
@@ -28,6 +29,7 @@ class Collection extends Component {
     }
 
     render() {
+        // {console.log(this.state.mapsData)}
         return (
             <div className="featured-image-block-grid">
                 <div className="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center">
@@ -35,7 +37,7 @@ class Collection extends Component {
                     <p>X marks the spot.</p>
                 </div>
                 {this.state.mapsData.map((mapContent) => (
-                    <SingleMapCard map_id="mapContent._id"/>
+                    <SingleMapCard map_id={mapContent._id}/>
                 ))}
             </div>
         );
