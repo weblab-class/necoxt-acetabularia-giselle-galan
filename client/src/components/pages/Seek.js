@@ -21,18 +21,15 @@ class Seek extends Component {
         steps: [],
         totalStepNumber: null,
         currentStepNumber: null,
-        // getCheckpointData: null,
-        // position: {
-        //   x: null,
-        //   y: null,
-        // },
+        mapsData: [],
       };
     }
 
     stepsToComp = () => {
       this.state.steps.map((step) => 
         <StepCardSeek 
-          maptype={this.step.map}
+          map={this.step.map}
+          position={this.step.positon}
           description={this.step.description}
           question={this.step.question}
           answer={this.step.answer}
@@ -41,29 +38,29 @@ class Seek extends Component {
     }
   
     componentDidMount() {
-      // remember -- api calls go here!
-      // document.title = "Create Map";
-      // get("/api/checkpoints").then((stepObjs) => {
-      //   stepObjs.map((stepObj) => {
-      //     this.setState({ steps: this.state.steps.concat([storyObj]) });
-      //   });
-      // });
-      get("/api/checkpoints").then((stepsObj) => {
-        this.setState({ steps: JSON.stringify(stepsObj) })
+      // get map content
+      get("/api/checkpoints").then((mapsDataObjs) => {
+        // this.setState({ mapContent: JSON.stringify(mapContentObj) })
+        // this.setState({ mapsData: JSON.stringify(mapsDataObjs) })
+        this.setState({ mapsData: mapsDataObjs })
       });
     }
   
     render() {
-
+        // console.log(this.state.mapsData)
         return (
             <>
             <div className="">
               <div>
-                <StepCardSeek 
-                  description={data.description}
-                  question={data.question}
-                  answer={data.answer}
-                />
+                {this.state.mapsData.map((mapContent) => (
+                  <StepCardSeek 
+                    map={mapContent.map}
+                    position={mapContent.position}
+                    description={mapContent.description}
+                    question={mapContent.question}
+                    answer={mapContent.answer}
+                  />
+                ))}
               </div>
             </div>
             </>

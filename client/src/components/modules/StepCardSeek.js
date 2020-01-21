@@ -26,15 +26,6 @@ class StepCardSeek extends Component {
     super(props);
     this.state = {
         userInput: "",
-        // clickPos: {
-        //     x: null,
-        //     y: null,
-        //   },
-      // map: "",
-      // location: {xPosition: null, yPosition: null},
-      // description: "",
-      // question: "",
-      // answer: "",
     };
   }
 
@@ -63,15 +54,6 @@ class StepCardSeek extends Component {
 
   render() {
     return (
-      // hard-coded map data: map type = campus map + checkpoint
-      // display relevant location data (descript, q&a)
-      // check for correctness of answer 
-      
-      // card content v0
-      // <div className="card-container">
-      //   <div className="card-header">
-      //     Step 1
-      //   </div>
     <div>
       {/* <link
         rel="stylesheet"
@@ -79,39 +61,40 @@ class StepCardSeek extends Component {
       /> */}
       <br/>
 
-      {/* NavBar */}
-      {/* <div className="grid-x grid-container">
-        <nav role="navigation" className="cell">
-          <ul className="breadcrumbs">
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/create/">Create</a>
-            </li>
-            <li>
-              <span className="show-for-sr">Current: </span> Seek
-          </li>
-          </ul>
-        </nav>
-      </div> */}
-
-      {/* card content */}
+      {/* Card container */}
       <div className="grid-y grid-container card-container large">
         <div className="cell card-header">
           <div className="card-title">Let's find treasure.</div>
           <div className="card-subtitle">Location 1</div>
         </div>
         
-        {/* map data */}
+        {/* Map and Checkpoint */}
         <div className="cell grid-x grid-container grid-margin-x">
             <div className="cell large-8 thumbnail map-container" id="mapThumbnailContainerID">
+              <Map
+                position={this.props.position}
+                // setPos={this.props.setPos}
+                mapSelection={this.props.map}
+                className="map"
+              />
+              <Checkpoint
+                position={this.props.position}
+                clearCheckpoint={this.props.clearCheckpoint}
+              />
             </div>
             <div className="cell large-4">
+              <h5>TO-DO</h5>
+              <br />
+              <div className="grid-y grid-container align-centered">
+                <h6>- add map title + creator info</h6>
+                <h6>- add creator content (eg. interesting info about this location)</h6>
+              </div>
             </div>
           </div>
 
-        {/* description  */}
+          <hr className="cell divider" />
+
+        {/* Description  */}
         <h5>Are you at the right location?</h5>
           <div className="cell description-container">
             <label> 
@@ -121,7 +104,6 @@ class StepCardSeek extends Component {
               <br/>
               <h6>Answer the following question:</h6>
               <div>{this.props.question}</div>
-              {/* <div>Enter answer:</div> */}
               <input 
                 value={this.state.userInput}
                 onChange={this.handleChange}
