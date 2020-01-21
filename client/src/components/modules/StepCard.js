@@ -16,7 +16,9 @@ import "../foundation.css"
  * @param {string} creator_name
  * @param {string} creator_id
  * @param {string} map type
- * @param {{xPosition: Number, yPosition: Number}} position of the checkpoint
+ * @param {{x: Number, y: Number}} position of the checkpoint
+ * @param {() => void} setPos: (function) triggered when click on the map
+ * @param {() => void} clearCheckpoint: (function) triggered when click on clear button, make checkpoint and clear button disappear
  * @param {string} description
  * @param {string} question
  * @param {string} answer
@@ -48,7 +50,7 @@ class StepCard extends Component {
       // creator_id: String,
       // creator_name: String,
       map: this.state.mapSelection,
-      postion: {
+      position: {
         x: this.props.position.x,
         y: this.props.position.y,
       },

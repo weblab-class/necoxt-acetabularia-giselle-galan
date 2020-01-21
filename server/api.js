@@ -53,7 +53,7 @@ router.post("/checkpoint", (req, res) => {
     creator_id: "req.user._id",
     creator_name: "req.user.name",
     map: req.body.map,
-    location: req.body.location,
+    position: req.body.position,
     description: req.body.description,
     question: req.body.question,
     answer: req.body.answer,

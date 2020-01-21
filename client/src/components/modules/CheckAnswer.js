@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 
-import "./StepCardSeek.css";
+import "./StepCard.css";
 import "../foundation.css"
 
 
