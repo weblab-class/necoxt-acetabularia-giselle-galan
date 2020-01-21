@@ -102,15 +102,7 @@ class StepCardSeek extends Component {
           <div className="card-title">Let's find treasure.</div>
           <div className="card-subtitle">Location 1</div>
         </div>
-
-        {/* map and checkpoint */}
-        {/* <div className="map-container">
-          <Map position={{x:660, y:590}} className="map"/>
-          <div className="checkpoint" style={{top: 660, left: 590}}>
-            <Checkpoint position={{x:660, y:590}}/>
-          </div> 
-        </div> */}
-
+        
         {/* map data */}
         <div className="cell grid-x grid-container grid-margin-x">
             <div className="cell large-8 thumbnail map-container" id="mapThumbnailContainerID">

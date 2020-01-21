@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import StepCardSeek from "../modules/StepCardSeek.js";
+import { get } from "../../utilities";
 
 import "../../utilities.css";
 import "./Seek.css";
@@ -17,6 +18,7 @@ class Seek extends Component {
       super(props);
       // Initialize Default State
       this.state = {
+        steps: [],
         totalStepNumber: null,
         currentStepNumber: null,
         // getCheckpointData: null,
@@ -25,6 +27,17 @@ class Seek extends Component {
         //   y: null,
         // },
       };
+    }
+
+    stepsToComp = () => {
+      this.state.steps.map((step) => 
+        <StepCardSeek 
+          maptype={this.step.map}
+          description={this.step.description}
+          question={this.step.question}
+          answer={this.step.answer}
+        /> 
+      );
     }
   
     componentDidMount() {
@@ -35,6 +48,9 @@ class Seek extends Component {
       //     this.setState({ steps: this.state.steps.concat([storyObj]) });
       //   });
       // });
+      get("/api/checkpoints").then((stepsObj) => {
+        this.setState({ steps: JSON.stringify(stepsObj) })
+      });
     }
   
     render() {
