@@ -6,13 +6,6 @@ import "../../utilities.css";
 import "./Seek.css";
 import "../foundation.css";
 
-const data = {
-    // position: { x: 666, y: 590 },
-    description: "This is a description of the location.",
-    question: "This is a question about the location.",
-    answer: "answer",
-};
-
 class Seek extends Component {
     constructor(props) {
       super(props);
@@ -24,30 +17,15 @@ class Seek extends Component {
         mapsData: [],
       };
     }
-
-    stepsToComp = () => {
-      this.state.steps.map((step) => 
-        <StepCardSeek 
-          map={this.step.map}
-          position={this.step.positon}
-          description={this.step.description}
-          question={this.step.question}
-          answer={this.step.answer}
-        /> 
-      );
-    }
   
     componentDidMount() {
       // get map content
       get("/api/checkpoints").then((mapsDataObjs) => {
-        // this.setState({ mapContent: JSON.stringify(mapContentObj) })
-        // this.setState({ mapsData: JSON.stringify(mapsDataObjs) })
         this.setState({ mapsData: mapsDataObjs })
       });
     }
   
     render() {
-        // console.log(this.state.mapsData)
         return (
             <>
             <div className="">
