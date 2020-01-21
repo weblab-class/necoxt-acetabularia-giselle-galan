@@ -1,0 +1,36 @@
+.map {
+    height: 1000px;
+    width: 600px;
+}
+
+.pin {
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.step-summary {
+    max-width: 800px;
+    background-color: #fefefe;
+}
+
+.summary-title {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 1rem;
+    border: 1px solid #e6e6e6;
+}
+
+.card-container {
+    color: #242424;
+    transition: color 0.5s ease;
+    background: none;
+    border-bottom: 1px solid #e6e6e6;
+    padding-right: 0.8rem;
+}
