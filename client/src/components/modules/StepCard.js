@@ -41,11 +41,6 @@ class StepCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // mapSelection: "CampusMap", // CampusMap(default), TunnelMap, FloorPlan
-      // position: {
-      //   x: null,
-      //   y: null,
-      // },
       data: null,
     };
   }
@@ -67,8 +62,10 @@ class StepCard extends Component {
         break;
       case "PreviousStep":
         this.props.previousStep(newData);
-      default:
-        console.log("Description.js: invalid input onClickButton");
+        break;
+      case "Delete":
+        this.props.deleteStep();
+        break;
     }
 
     this.setState({
@@ -77,13 +74,7 @@ class StepCard extends Component {
   }
 
   componentDidMount() {
-    // get("/api/comment", { parent: this.props._id }).then((comments) => {
-    //   this.setState({
-    //     comments: comments,
-    //   });
-    // });
     this.setState({data: {...this.props.data}});
-    console.log("componentDidMount", this.state);
   }
 
   setPos = (event) => {
@@ -115,25 +106,6 @@ class StepCard extends Component {
     })
   }
 
-  // sendMapContent = (value) => {
-  //   const body = {
-  //     // creator_id: String,
-  //     // creator_name: String,
-  //     treasure_id: this.props.treasure_id,
-  //     step: this.props.step.current,
-  //     map: this.state.mapSelection,
-  //     position: {
-  //       x: this.state.position.x,
-  //       y: this.state.position.y,
-  //     },
-  //     description: value.descriptionValue,
-  //     question: value.questionValue,
-  //     answer: value.answerValue,
-  //   };
-  //   post("/api/treasure", body);
-  //   console.log(body);
-  // }
-
   render() {
     if (this.state.data) {
       return (
@@ -164,7 +136,7 @@ class StepCard extends Component {
           <div className="grid-y grid-container card-container large">
             <div className="cell card-header">
               <div className="card-title">Now, Create Your Treasure Map!</div>
-              <div className="card-subtitle">Step {this.state.data.step} of {this.props.totalSteps}</div>
+              <div className="card-subtitle">Step {this.props.currentStep} of {this.props.totalSteps}</div>
             </div>
   
             {/* Map and Checkpoint */}
@@ -185,7 +157,9 @@ class StepCard extends Component {
                 <h5>Choose your map type</h5>
                 <br />
                 <div className="grid-y grid-container align-centered">
-                  <select onChange={this.changeMap} required >
+                  <select defaultValue={this.state.data.map} onChange={this.changeMap} required >
+                    {/* {this.state.data.map === "CampusMap" ? (<option selected="selected" value="CampusMap">Campus Map</option>) : (<option value="CampusMap">Campus Map</option>)}
+                    {this.state.data.map === "TunnelMap" ? (<option selected="selected" value="TunnelMap">Campus Map</option>) : (<option value="TunnelMap">Campus Map</option>)} */}
                     <option value="CampusMap">Campus Map</option>
                     <option value="TunnelMap">Tunnel Map</option>
                     {/* <option value="FloorPlan">Floor Plan</option> */}

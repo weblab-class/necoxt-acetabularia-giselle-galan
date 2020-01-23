@@ -5,6 +5,8 @@ import NavBar from "../modules/NavBar.js";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import Checkpoint from "../modules/Checkpoint.js";
 import StepCard from "../modules/StepCard.js";
+import { get } from "../../utilities";
+import { post } from "../../utilities";
 
 
 import "../../utilities.css";
@@ -44,12 +46,14 @@ class Create extends Component {
       let newSteps = this.state.steps;
       // save current step
       if (newSteps && data) {
-        newSteps[data.step - 1] = data;
+        newSteps[this.state.currentStep - 1] = data;
       }
       this.setState({
         steps: newSteps,
         currentStep: this.state.currentStep - 1,
       });
+    } else {
+      alert("This is the first step");
     }
   }
 
@@ -72,17 +76,28 @@ class Create extends Component {
       newSteps[data.step - 1] = data;
     }
     this.setState({
-      steps: newSteps,
+      steps: newSteps.map((stepObj, i) => (
+        {...stepObj, step: i + 1,}
+      )),
       currentStep: 1,
     });
     post("/api/treasure", this.state.steps);
+  }
+
+  deleteStep = () => {
+    let newSteps = this.state.steps;
+    newSteps.splice(this.state.currentStep-1, 1);
+    this.setState({
+      steps: newSteps,
+      currentStep: this.state.currentStep - 1,
+    });
   }
 
   nextStep = (data) => {
     let newSteps = this.state.steps;
     // save current step
     if (newSteps && data) {
-      newSteps[data.step - 1] = data;
+      newSteps[this.state.currentStep - 1] = data;
     }
 
     // add a new step
@@ -90,7 +105,6 @@ class Create extends Component {
     if (this.state.currentStep === this.state.steps.length) {
       newSteps = newSteps.concat([{
         step_id: new mongoose.Types.ObjectId(),
-        step: this.state.steps.length + 1,
         map: "CampusMap",
         position: {
           x: null,
@@ -104,7 +118,7 @@ class Create extends Component {
 
     this.setState({
       steps: newSteps,
-      currentStep: this.state.steps.length + 1,
+      currentStep: this.state.currentStep + 1,
     });
   }
 
@@ -145,12 +159,14 @@ class Create extends Component {
         <div className="">
           <div className="">
             <StepCard
-              key={this.state.currentStep}
+              key={this.state.steps[this.state.currentStep - 1].step_id}
               data={this.state.steps[this.state.currentStep - 1]}
+              currentStep={this.state.currentStep}
               totalSteps={this.state.steps.length}
               previousStep={this.previousStep}
               nextStep={this.nextStep}
               finishCreate={this.finishCreate}
+              deleteStep={this.deleteStep}
             />
           </div>
         </div>

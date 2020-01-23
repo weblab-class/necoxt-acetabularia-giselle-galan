@@ -37,32 +37,30 @@ class Descriptions extends Component {
   clickFinish = (event) => {
     event.preventDefault();
     this.props.onClickButton && this.props.onClickButton(this.state, "Finish");
-    // this.setState({
-    //   descriptionValue: "",
-    //   questionValue: "",
-    //   answerValue: "",
-    // });
+  };
+
+  clickDelete = (event) => {
+    event.preventDefault();
+    this.props.onClickButton && this.props.onClickButton(this.state, "Delete");
   };
 
   clickNextStep = (event) => {
     event.preventDefault();
     this.props.onClickButton && this.props.onClickButton(this.state, "NextStep");
-    // this.setState({
-    //   descriptionValue: "",
-    //   questionValue: "",
-    //   answerValue: "",
-    // });
   };
 
   clickPreviousStep = (event) => {
     event.preventDefault();
     this.props.onClickButton && this.props.onClickButton(this.state, "PreviousStep");
-    // this.setState({
-    //   descriptionValue: "",
-    //   questionValue: "",
-    //   answerValue: "",
-    // });
   };
+
+  componentDidMount() {
+    this.setState({
+      descriptionValue: this.props.descriptionValue,
+      questionValue: this.props.questionValue,
+      answerValue: this.props.answerValue,
+    });
+  }
 
   render() {
     return (
@@ -90,10 +88,15 @@ class Descriptions extends Component {
       />
       <div className="grid-x grid-container align-spaced grid-margin-x">
         <button 
-          type="button" 
+          type="submit" 
           className="cell shrink button-rounded-hover"
           onClick={this.clickPreviousStep}
         >GO BACK</button>
+        <button
+          type="submit"
+          className="cell shrink button-rounded-hover" 
+          onClick={this.clickDelete}
+        >DELETE</button>
         <button
           type="submit"
           className="cell shrink button-rounded-hover" 
