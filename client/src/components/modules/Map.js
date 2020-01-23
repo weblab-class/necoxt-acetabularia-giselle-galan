@@ -9,7 +9,7 @@ import "./map.css";
  *
  * Proptypes
  * @param {string} onClick funtion that will be called when click the map (pass null for seeker)
- * @param {string} mapSelection which map to use "CampusMap", "TunnelMap"
+ * @param {string} map which map to use "CampusMap", "TunnelMap"
  * 
  */
 class Map extends Component {
@@ -28,13 +28,13 @@ class Map extends Component {
     return (
       <div id="imageID">
         <img
-          src={mapMaping[this.props.mapSelection][0]} 
+          src={mapMaping[this.props.map][0]} 
           onClick={() => this.props.setPos()} 
-          width={mapMaping[this.props.mapSelection][1]} 
-          height={mapMaping[this.props.mapSelection][2]}
+          width={mapMaping[this.props.map][1]} 
+          height={mapMaping[this.props.map][2]}
         />
         {/* {console.log(this.props.position)} */}
-        {/* {console.log(this.props.mapSelection)} */}
+        {/* {console.log(this.props.map)} */}
       </div>
     );
   }

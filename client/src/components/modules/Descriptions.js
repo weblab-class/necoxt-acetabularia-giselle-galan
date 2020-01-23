@@ -34,14 +34,34 @@ class Descriptions extends Component {
     });
   };
 
-  handleFinish = (event) => {
+  clickFinish = (event) => {
     event.preventDefault();
-    this.props.onFinish && this.props.onFinish(this.state);
-    this.setState({
-      descriptionValue: "",
-      questionValue: "",
-      answerValue: "",
-    });
+    this.props.onClickButton && this.props.onClickButton(this.state, "Finish");
+    // this.setState({
+    //   descriptionValue: "",
+    //   questionValue: "",
+    //   answerValue: "",
+    // });
+  };
+
+  clickNextStep = (event) => {
+    event.preventDefault();
+    this.props.onClickButton && this.props.onClickButton(this.state, "NextStep");
+    // this.setState({
+    //   descriptionValue: "",
+    //   questionValue: "",
+    //   answerValue: "",
+    // });
+  };
+
+  clickPreviousStep = (event) => {
+    event.preventDefault();
+    this.props.onClickButton && this.props.onClickButton(this.state, "PreviousStep");
+    // this.setState({
+    //   descriptionValue: "",
+    //   questionValue: "",
+    //   answerValue: "",
+    // });
   };
 
   render() {
@@ -72,15 +92,17 @@ class Descriptions extends Component {
         <button 
           type="button" 
           className="cell shrink button-rounded-hover"
+          onClick={this.clickPreviousStep}
         >GO BACK</button>
         <button
           type="submit"
           className="cell shrink button-rounded-hover" 
-          onClick={this.handleFinish}
+          onClick={this.clickFinish}
         >FINISH</button>
         <button
           type="submit"
           className="cell shrink button-rounded-hover"
+          onClick={this.clickNextStep}
         >NEXT STEP</button>
       </div>
       </>

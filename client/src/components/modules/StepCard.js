@@ -46,8 +46,34 @@ class StepCard extends Component {
       //   x: null,
       //   y: null,
       // },
-      data: {...this.props.data},
+      data: null,
     };
+  }
+
+  onClickButton = (descriptions, type) => {
+    let newData = {
+      ...this.state.data, 
+      description: descriptions.descriptionValue, 
+      question: descriptions.questionValue, 
+      answer: descriptions.answerValue,
+    }
+
+    switch (type) {
+      case "Finish":
+        this.props.finishCreate(newData);
+        break;
+      case "NextStep":
+        this.props.nextStep(newData);
+        break;
+      case "PreviousStep":
+        this.props.previousStep(newData);
+      default:
+        console.log("Description.js: invalid input onClickButton");
+    }
+
+    this.setState({
+      data: newData,
+    })
   }
 
   componentDidMount() {
@@ -56,6 +82,8 @@ class StepCard extends Component {
     //     comments: comments,
     //   });
     // });
+    this.setState({data: {...this.props.data}});
+    console.log("componentDidMount", this.state);
   }
 
   setPos = (event) => {
@@ -70,121 +98,127 @@ class StepCard extends Component {
     // let yMap = document.getElementById('imageID').offsetTop;
     let xMap = 4; // border from thumbnail
     let yMap = 4; // border from thumbnail
-    this.setState({
-      ...this.state.data, position: {x: x-xMapContainer-xMap, y: y-yMapContainer-yMap,}
+    this.setState({data: 
+      {...this.state.data, position: {x: x-xMapContainer-xMap, y: y-yMapContainer-yMap},}
     });
   }
 
   clearCheckpoint = () => {
-    this.setState({
-      ...this.state.data, position: {x: null, y: null,}
+    this.setState({data:
+      {...this.state.data, position: {x: null, y: null,}},
     });
   }
 
   changeMap = (event) => {
-    this.setState({ 
-      mapSelection: event.target.value 
+    this.setState({data:
+      {...this.state.data, map: event.target.value},
     })
   }
 
-  sendMapContent = (value) => {
-    const body = {
-      // creator_id: String,
-      // creator_name: String,
-      treasure_id: this.props.treasure_id,
-      step: this.props.step.current,
-      map: this.state.mapSelection,
-      position: {
-        x: this.state.position.x,
-        y: this.state.position.y,
-      },
-      description: value.descriptionValue,
-      question: value.questionValue,
-      answer: value.answerValue,
-    };
-    post("/api/treasure", body);
-    console.log(body);
-  }
-
-  clickNextStep = () => {
-    
-  }
+  // sendMapContent = (value) => {
+  //   const body = {
+  //     // creator_id: String,
+  //     // creator_name: String,
+  //     treasure_id: this.props.treasure_id,
+  //     step: this.props.step.current,
+  //     map: this.state.mapSelection,
+  //     position: {
+  //       x: this.state.position.x,
+  //       y: this.state.position.y,
+  //     },
+  //     description: value.descriptionValue,
+  //     question: value.questionValue,
+  //     answer: value.answerValue,
+  //   };
+  //   post("/api/treasure", body);
+  //   console.log(body);
+  // }
 
   render() {
-    return (
-      // <Test />
-      // <MultistepCheckout />
-      <div>
-        {/* <link
-          rel="stylesheet"
-          href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"
-        /> */}
-        <br />
-
-        {/* NavBar */}
-        <div className="grid-x grid-container">
-          <nav role="navigation" className="cell">
-            <ul className="breadcrumbs">
-              <li>
-                <a href="/">Home</a>
+    if (this.state.data) {
+      return (
+        // <Test />
+        // <MultistepCheckout />
+        <div>
+          {/* <link
+            rel="stylesheet"
+            href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"
+          /> */}
+          <br />
+  
+          {/* NavBar */}
+          <div className="grid-x grid-container">
+            <nav role="navigation" className="cell">
+              <ul className="breadcrumbs">
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <li>
+                  <span className="show-for-sr">Current: </span> Create
               </li>
-              <li>
-                <span className="show-for-sr">Current: </span> Create
-            </li>
-            </ul>
-          </nav>
-        </div>
-
-        {/* Card content */}
-        <div className="grid-y grid-container card-container large">
-          <div className="cell card-header">
-            <div className="card-title">Now, Create Your Treasure Map!</div>
-            <div className="card-subtitle">Step 1 of 1</div>
+              </ul>
+            </nav>
           </div>
-
-          {/* Map and Checkpoint */}
-          <div className="cell grid-x grid-container grid-margin-x">
-            <div className="cell large-8 thumbnail map-container" id="mapThumbnailContainerID">
-              <Map
-                position={this.state.position}
-                setPos={this.setPos}
-                mapSelection={this.state.mapSelection}
-                className="map"
-              />
-              <Checkpoint
-                position={this.state.position}
-                clearCheckpoint={this.clearCheckpoint}
-              />
+  
+          {/* Card content */}
+          <div className="grid-y grid-container card-container large">
+            <div className="cell card-header">
+              <div className="card-title">Now, Create Your Treasure Map!</div>
+              <div className="card-subtitle">Step {this.state.data.step} of {this.props.totalSteps}</div>
             </div>
-            <div className="cell large-4">
-              <h5>Choose your map type</h5>
-              <br />
-              <div className="grid-y grid-container align-centered">
-                <select onChange={this.changeMap} required >
-                  <option value="CampusMap">Campus Map</option>
-                  <option value="TunnelMap">Tunnel Map</option>
-                  {/* <option value="FloorPlan">Floor Plan</option> */}
-                </select>
-                <p className="or-divider"><span>or</span></p>
-                <label htmlFor="FoldMap" className="button">Upload Your Own Map</label>
+  
+            {/* Map and Checkpoint */}
+            <div className="cell grid-x grid-container grid-margin-x">
+              <div className="cell large-8 thumbnail map-container" id="mapThumbnailContainerID">
+                <Map
+                  position={this.state.data.position}
+                  setPos={this.setPos}
+                  map={this.state.data.map}
+                  className="map"
+                />
+                <Checkpoint
+                  position={this.state.data.position}
+                  clearCheckpoint={this.clearCheckpoint}
+                />
+              </div>
+              <div className="cell large-4">
+                <h5>Choose your map type</h5>
+                <br />
+                <div className="grid-y grid-container align-centered">
+                  <select onChange={this.changeMap} required >
+                    <option value="CampusMap">Campus Map</option>
+                    <option value="TunnelMap">Tunnel Map</option>
+                    {/* <option value="FloorPlan">Floor Plan</option> */}
+                  </select>
+                  <p className="or-divider"><span>or</span></p>
+                  <label htmlFor="FoldMap" className="button">Upload Your Own Map</label>
+                </div>
               </div>
             </div>
+  
+            <hr className="cell divider" />
+  
+            {/* Descriptions */}
+            <h5>Tell us a hint to your treasure</h5>
+            <div className="cell description-container">
+              <Descriptions
+                descriptionValue={this.state.data.description}
+                questionValue={this.state.data.question}
+                answerValue={this.state.data.answer}
+                onClickButton={this.onClickButton}
+              />
+            </div>
+            <br />
+  
           </div>
-
-          <hr className="cell divider" />
-
-          {/* Descriptions */}
-          <h5>Tell us a hint to your treasure</h5>
-          <div className="cell description-container">
-            <Descriptions onFinish={this.sendMapContent}/>
-          </div>
-          <br />
-
         </div>
-      </div>
-
-
-    );
+      );
+    } else {
+      return (
+        <div>rendering...</div>
+      );
+    }
+    
   }
 }
 

@@ -40,10 +40,10 @@ class Create extends Component {
   }
   
   previousStep = (data) => {
-    if (currentStep > 1) {
+    if (this.state.currentStep > 1) {
       let newSteps = this.state.steps;
       // save current step
-      if (newSteps) {
+      if (newSteps && data) {
         newSteps[data.step - 1] = data;
       }
       this.setState({
@@ -53,7 +53,7 @@ class Create extends Component {
     }
   }
 
-  finishCreate = () => {
+  finishCreate = (data) => {
     // const body = [{
     //   step_id: String,
     //   step: Number,
@@ -66,31 +66,40 @@ class Create extends Component {
     //   question: String,
     //   answer: String,
     // }];
-    post("/api/treasure", this.state.steps);
-    console.log(this.state.steps);
-  }
-
-  nextStep = (data) => {
     let newSteps = this.state.steps;
     // save current step
     if (newSteps) {
       newSteps[data.step - 1] = data;
     }
+    this.setState({
+      steps: newSteps,
+      currentStep: 1,
+    });
+    post("/api/treasure", this.state.steps);
+  }
+
+  nextStep = (data) => {
+    let newSteps = this.state.steps;
+    // save current step
+    if (newSteps && data) {
+      newSteps[data.step - 1] = data;
+    }
 
     // add a new step
+
     if (this.state.currentStep === this.state.steps.length) {
-      newSteps.concat([{
+      newSteps = newSteps.concat([{
         step_id: new mongoose.Types.ObjectId(),
         step: this.state.steps.length + 1,
         map: "CampusMap",
-        positions: {
+        position: {
           x: null,
           y: null,
         },
         description: "",
         question: "",
         answer: "",
-      }])
+      }]);
     }
 
     this.setState({
@@ -130,15 +139,17 @@ class Create extends Component {
 
   render() {
     if (this.state.currentStep > 0) {
+      console.log(this.state, this.state.steps[this.state.currentStep - 1]);
       return (
         <>
         <div className="">
           <div className="">
             <StepCard
-              data={this.state.steps[this.state.currentStep]}
+              key={this.state.currentStep}
+              data={this.state.steps[this.state.currentStep - 1]}
               totalSteps={this.state.steps.length}
               previousStep={this.previousStep}
-              addStep={this.addStep}
+              nextStep={this.nextStep}
               finishCreate={this.finishCreate}
             />
           </div>
