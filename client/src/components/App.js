@@ -21,7 +21,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // userId: undefined,
+      userId: undefined,
     };
   }
 
@@ -62,6 +62,7 @@ class App extends Component {
           />
           <Create 
             path="/create/"
+            userId={this.state.userId}
           />
           {/* <Seek path="/seek/" />  */}
           <Seek path="/seek/:map_id" />
