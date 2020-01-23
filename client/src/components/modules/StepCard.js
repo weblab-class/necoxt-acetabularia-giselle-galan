@@ -58,8 +58,11 @@ class StepCard extends Component {
       question: value.questionValue,
       answer: value.answerValue,
     };
-    post("/api/checkpoint", body);
-    console.log(body);
+    post("/api/checkpoint", body).catch(err => {
+      if (err.statusText === "Unauthorized") {
+        alert("Please Login");
+      }
+    });
   }
 
   render() {

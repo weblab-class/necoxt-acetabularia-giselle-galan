@@ -53,7 +53,7 @@ router.get("/checkpoint", (req, res) => {
   Checkpoint.find({ _id: req.query._id }).then((checkpoints) => res.send(checkpoints));
 });
 
-router.post("/checkpoint", (req, res) => {
+router.post("/checkpoint", auth.ensureLoggedIn, (req, res) => {
   const newCheckpoint = new Checkpoint({
     creator_id: "req.user._id",
     creator_name: "req.user.name",
