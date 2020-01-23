@@ -36,6 +36,10 @@ class StepCardSeek extends Component {
     });
   };
 
+  WordCount = (str) => { 
+    return str.split(" ").length;
+  };
+
   componentDidMount() {
     // get("/api/comment", { parent: this.props._id }).then((comments) => {
     //   this.setState({
@@ -105,6 +109,7 @@ class StepCardSeek extends Component {
               <div>{this.props.description}</div>
               <br/>
               <h6>Answer the following question:</h6>
+              <div>[The answer's length is {this.WordCount(this.props.answer)} word(s) or number(s)]</div>
               <div>{this.props.question}</div>
               <input 
                 value={this.state.userInput}

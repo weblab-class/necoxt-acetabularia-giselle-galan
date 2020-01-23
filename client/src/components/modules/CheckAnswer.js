@@ -24,7 +24,7 @@ class CheckAnswer extends Component {
     } 
 
     render() { 
-        if (this.props.answer == this.props.user_input) {
+        if (this.props.answer.toLowerCase() == this.props.user_input.toLowerCase()) {
           return (
             <div>
               <br/>
