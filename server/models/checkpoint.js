@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const CheckpointSchema = new mongoose.Schema({
   creator_id: String,
   creator_name: String,
+  checkpoint_id: String,
+  treasure_id: String,
+  step: Number,
   map: String,
   position: {
     x: Number,
