@@ -76,6 +76,11 @@ router.get("/treasures", (req, res) => {
   Treasure.find({}).then((treasures) => res.send(treasures));
 });
 
+router.get("/treasure", (req, res) => {
+  // get one treasure map
+  Treasure.find({ _id: req.query._id }).then((treasures) => res.send(treasures));
+});
+
 router.post("/treasure", auth.ensureLoggedIn, (req, res) => {
   const newTreasure = new Treasure({
     creator_id: req.user._id,

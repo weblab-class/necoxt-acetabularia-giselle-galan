@@ -23,7 +23,7 @@ class NavBar extends Component {
         <div className="NavBar-linkContainer u-inlineBlock">
           <Link to="/" className="NavBar-link">home</Link>
           <Link to="/create/" className="NavBar-link">create</Link>
-          <Link to="/collection/" className="NavBar-link">maps</Link>
+          <Link to="/maps/" className="NavBar-link">maps</Link>
           {this.props.userId ? (
             <GoogleLogout
               clientId={GOOGLE_CLIENT_ID}

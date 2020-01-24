@@ -11,64 +11,62 @@ class Seek extends Component {
       super(props);
       // Initialize Default State
       this.state = {
-        steps: [],
-        totalStepNumber: null,
-        currentStepNumber: null,
+        // steps: [],
         // mapsData: [],
-        mapData: []
+        // mapData: []
+        treasureMapData: null,
+        // totalStepNumber: null,
+        // currentStep: 0,
+        // firstStep: true,
+        // lastStep: false
       };
     }
     
-    // filterFunc(maps) (
-
-    // )
+    // updateStep = () => {
+    //   if (this.state.firstStep) {
+    //     this.setState({ currentStep: 0});
+    //     this.setState({firstStep: false});
+    //   }
+    //   else {
+    //     this.setState({ currentStep: this.state.currentStep+1 });
+    //     this.state.currentStep == this.state.totalStepNumber-1 && this.setState({ lastStep: true });
+    //   }
+    // }
 
     componentDidMount() {
-      // get map content
-      // get("/api/checkpoints").then((mapsDataObjs) => {
-      //   this.setState({ mapsData: mapsDataObjs })
+      // get map content with single step
+      // get(`/api/checkpoint`, { _id: this.props.map_id}).then((mapContentObj) => {
+      //   this.setState({ mapData: mapContentObj });
       // });
-      get(`/api/checkpoint`, { _id: this.props.map_id}).then((mapContentObj) => {
-        this.setState({ mapData: mapContentObj });
-        // console.log(this.state.mapData[0].position);
+      // get treasure map content with multiple steps
+      get(`/api/treasure`, { _id: this.props.treasure_id }).then((treasureMapObj) => {
+        this.setState({ treasureMapData: treasureMapObj })
       });
-      // console.log("test",get(`/api/checkpoint`, { _id: this.props.map_id}));
+      // this.setState({ totalStepNumber: this.state.treasureMapData.length});
+      // this.updateStep();
     }
   
     render() {
-      // console.log(this.props.map_id);
-      // console.log(get(`/api/checkpoint`, { _id: this.props.map_id}));
-      // console.log(this.state.mapData);
-      // if (this.state.mapData[0]!=[]) {
-      //   console.log(this.state.mapData[0].position);
-      // }
       
-      // return null;
-
-        // return (<div>hi</div>
-        if (this.state.mapData.length != 0) {
-          return (
-            <>
-              <div className="">
-                <div>
-
-                  <StepCardSeek 
-                    _id={this.props.map_id}
-                    map={this.state.mapData[0].map}
-                    position={this.state.mapData[0].position}
-                    description={this.state.mapData[0].description}
-                    question={this.state.mapData[0].question}
-                    answer={this.state.mapData[0].answer}
-                  />
-                  {/* ))} */}
-                </div>
-              </div>
-            </>
-          );
-        }
-      else {
-        return (<div>loading your treasure map</div>)
+      if (this.state.treasureMapData) {
+        // console.log(this.state.treasureMapData[0].treasureSteps);
+        // console.log(this.state.treasureMapData[0].treasureSteps[this.state.currentStep]);
+        // return null;
+        return (
+          <div>
+            <StepCardSeek 
+              _id={this.props._id}
+              // data={this.state.treasureMapData[0].treasureSteps[this.state.currentStep]}
+              data={this.state.treasureMapData[0].treasureSteps}
+              // lastStep={this.state.lastStep}
+              // updateStep={this.updateStep}
+            />
+          </div>
+        );
       }
+    else {
+      return (<div>rendering</div>)
+    }
   }
   
 }

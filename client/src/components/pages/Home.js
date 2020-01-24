@@ -45,7 +45,7 @@ class Home extends Component {
               <button className="button large warning">create a map</button>
             </Link>
             <div></div>
-            <Link to="/collection/" >
+            <Link to="/maps/" >
               <button className="button large warning">seek treasure</button>
             </Link>
             

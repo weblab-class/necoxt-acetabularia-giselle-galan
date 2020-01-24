@@ -65,8 +65,9 @@ class App extends Component {
             userId={this.state.userId}
           />
           {/* <Seek path="/seek/" />  */}
-          <Seek path="/seek/:map_id" />
-          <Collection path="/collection/" />
+          {/* <Seek path="/seek/:map_id" /> */}
+          <Seek path="/seek/:treasure_id" />
+          <Collection path="/maps/" />
           <NotFound default />
         </Router>
       </>

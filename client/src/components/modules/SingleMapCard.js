@@ -38,7 +38,8 @@ class SingleMapCard extends Component {
                     <div className="cell grid-x grid-container grid-margin-x">
                         {/* <div className="cell large-8 thumbnail map-container" id="mapThumbnailContainerID"> */}
                             <div id="imageID">
-                                <Link to={`/seek/${this.props.map_id}`} >
+                                {/* <Link to={`/seek/${this.props.map_id}`} > */}
+                                <Link to={`/seek/${this.props.treasure_id}`} >
                                     <img
                                         src="https://i.imgur.com/49AuhbP.jpg" 
                                         width="463px" 
@@ -48,11 +49,11 @@ class SingleMapCard extends Component {
                             </div>
                         {/* </div> */}
                         <div className="cell large-4">
-                            <h5>id: {this.props.map_id}</h5>
+                            <h5>id: {this.props.treasure_id}</h5>
                             <h5>TO-DO</h5>
                             <br />
                             <div className="grid-y grid-container align-centered">
-                                <h6>- add map title + description + tags</h6>
+                                <h6>This map has {this.props.total_steps} steps/locations.</h6>
                             </div>
                         </div>
                     </div>
