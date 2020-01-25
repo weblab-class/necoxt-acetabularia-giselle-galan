@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { get } from "../../utilities";
 import Checkpoint from "./Checkpoint";
 import Map from "./Map";
+import { navigate } from "@reach/router";
 // import CheckAnswer from "./CheckAnswer.js"
 
 // import "./StepCardSeek.css";
@@ -34,11 +35,12 @@ class StepCardSeek extends Component {
   }
 
   handleSubmit = () => {
-    if (this.state.lastStep) {
-      alert("you are done");
-    }
-    else {
-      if (this.state.stepData.answer.toLowerCase() == this.state.userInput.toLowerCase()) {
+    if (this.state.stepData.answer.toLowerCase() == this.state.userInput.toLowerCase()) {
+      if (this.state.lastStep) {
+        alert("you found treasure!");
+        navigate("/maps");
+      }
+      else {
         alert("correct");
 
         let nextStep = this.state.currentStep + 1;
@@ -50,11 +52,11 @@ class StepCardSeek extends Component {
         this.setState({ userInput: "" })
         this.setState({ stepData: this.props.data[nextStep]})
       }
-      else {
-        alert("try again");
-        this.setState({userInput: ""})
-      }  
     }
+    else {
+      alert("try again");
+      this.setState({userInput: ""})
+    }  
   }
 
   handleChange = event => {
@@ -62,8 +64,28 @@ class StepCardSeek extends Component {
     this.setState({ userInput: input });
   };
 
+  answerHint = (str) => {
+    let word = "";
+    let specialChar = [" ", "!", "*", "-", "?", ".", "$", "%", "+", "'", "/", "(", ")", "{", "}", "|", "<", ">", "," ]
+    for(var i=0; i<str.length; i++) {
+    // for (var char in str) {
+      if (specialChar.includes(str[i])) {
+        word += str[i];
+      }
+      else {
+        word += "x";
+      }
+    }
+    return word;
+  }
+
   WordCount = (str) => { 
-    return str.split(" ").length;
+    if (str == "") {
+      return 0;
+    }
+    else {
+      return str.split(" ").length;
+    }
   };
 
   componentDidMount() {
@@ -74,19 +96,15 @@ class StepCardSeek extends Component {
   render() {
     // return null;
     if (this.state.stepData) {
-      return (
+      return (        
       <div>
-        {/* <link
-          rel="stylesheet"
-          href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"
-        /> */}
+
         <br/>
 
         {/* Card container */}
         <div className="grid-y grid-container card-container large">
           <div className="cell card-header">
-            <div className="card-title">Let's find treasure.</div>
-            <div className="card-subtitle">Location {this.state.stepData.step}</div>
+            <div className="card-title">Location {this.state.stepData.step}</div>
           </div>
           
           {/* Map and Checkpoint */}
@@ -100,12 +118,10 @@ class StepCardSeek extends Component {
                 />
                 <Checkpoint
                   position={this.state.stepData.position}
-                  // clearCheckpoint={this.props.clearCheckpoint}
                 />
               </div>
               <div className="cell large-4">
                 <h5>step {this.state.stepData.step_id}</h5>
-                {/* <h4>HINT: THE ANSWER IS {this.props.data.answer}</h4> */}
                 <h5>TO-DO</h5>
                 <br />
                 <div className="grid-y grid-container align-centered">
@@ -138,7 +154,8 @@ class StepCardSeek extends Component {
                     required >
                   </input>
                 </div>
-                <div>[The answer's length is {this.WordCount(this.state.stepData.answer)} word(s) or number(s)]</div>
+                {/* <div>(The answer's length is {this.WordCount(this.state.stepData.answer)} word(s) or number(s)</div> */}
+                <div>( Answer form: {this.answerHint(this.state.stepData.answer)} )</div>
                 <div className="grid-x grid-container align-spaced grid-margin-x">
                   <button
                     // className="cell shrink button-rounded-hover">
