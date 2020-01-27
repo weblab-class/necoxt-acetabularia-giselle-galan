@@ -70,11 +70,12 @@ class Create extends Component {
     //   question: String,
     //   answer: String,
     // }];
+
     if (this.props.userId) {
       let newSteps = this.state.steps;
       // save current step
       if (newSteps) {
-        newSteps[data.step - 1] = data;
+        newSteps[this.state.currentStep - 1] = data;
       }
       this.setState({
         steps: newSteps.map((stepObj, i) => (
@@ -157,7 +158,6 @@ class Create extends Component {
 
   render() {
     if (this.state.currentStep > 0) {
-      console.log(this.state, this.state.steps[this.state.currentStep - 1]);
       return (
         <>
         <div className="">

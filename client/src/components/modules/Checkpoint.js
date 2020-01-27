@@ -22,9 +22,9 @@ class Checkpoint extends Component {
         <>
         <div 
           className="checkpoint" 
-          style={{ 
-            top: this.props.position.y-48,  // 48 is image height
-            left: this.props.position.x-15, // 15 is half image width
+          style={{
+            top: `calc(${this.props.position.y*100}% - 48px)`, // 48 is image height
+            left: `calc(${this.props.position.x*100}% - 15px)`, // 15 is half image width
         }}>
           <img src={Pin} />
         </div>
