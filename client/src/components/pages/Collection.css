@@ -1,0 +1,46 @@
+.cardContainer {
+  /* width: 500px; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 2px dotted rgb(235, 15, 15);
+}
+.cardContainer>* {
+    flex: 0 0 320px;
+    margin: 16px;
+    padding: 8px;
+    border: 2px dotted rgb(96, 139, 168);
+    /* border-radius: 20px; */
+}
+
+.mapDescription {
+  text-align: center;
+  padding: 8px;
+  margin: 4px;
+  border-radius: 20px;
+  /* background-color: #89BD9E; */
+  border: 2px dotted rgb(96, 139, 168);
+}
+
+.title {
+  padding: 8px;
+  text-align: center;
+  color: rgb(61, 47, 1);
+  border: 2px dotted rgb(96, 139, 168);
+}
+
+.pageContainer {
+  background-color: #FFFFFF;
+  /* background-color: rgb(255, 255, 128); */
+}
+
+img:hover {
+  opacity: 1;
+}
+
+.imgThumbnail {
+  border-radius: 20px;
+  opacity: 0.9;
+  /* border-top-right-radius: 20px; */
+  /* border-top-left-radius: 20px; */
+}

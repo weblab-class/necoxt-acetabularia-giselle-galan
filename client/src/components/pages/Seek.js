@@ -5,6 +5,7 @@ import { get } from "../../utilities";
 import "../../utilities.css";
 import "./Seek.css";
 import "../foundation.css";
+import "../pages/Collection.css"
 
 class Seek extends Component {
     constructor(props) {
@@ -53,14 +54,20 @@ class Seek extends Component {
         // console.log(this.state.treasureMapData[0].treasureSteps[this.state.currentStep]);
         // return null;
         return (
-          <div>
-            <StepCardSeek 
-              _id={this.props._id}
-              // data={this.state.treasureMapData[0].treasureSteps[this.state.currentStep]}
-              data={this.state.treasureMapData[0].treasureSteps}
-              // lastStep={this.state.lastStep}
-              // updateStep={this.updateStep}
-            />
+          <div className="pageContainer">
+            <div className="title">
+              <h1><b>map title</b></h1>
+              <h4><b><i>{(this.state.treasureMapData[0].creator_name).toLowerCase()} has hidden a treasure for you.</i></b></h4>
+            </div>
+            {/* <div> */}
+              <StepCardSeek 
+                _id={this.props._id}
+                // data={this.state.treasureMapData[0].treasureSteps[this.state.currentStep]}
+                data={this.state.treasureMapData[0].treasureSteps}
+                // lastStep={this.state.lastStep}
+                // updateStep={this.updateStep}
+              />
+            {/* </div> */}
           </div>
         );
       }

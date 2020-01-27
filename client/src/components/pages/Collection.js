@@ -4,41 +4,43 @@ import { get } from "../../utilities";
 import SingleMapCard from "../modules/SingleMapCard.js"
 
 import "../../utilities.css";
-// import "./Seek.css";
 import "../foundation.css";
+import "./Collection.css"
 
 class Collection extends Component {
-    constructor(props) {
-        super(props);
-        // Initialize Default State
-        this.state = {
-            treasureMapsData: [],
-        };
-    }
+  constructor(props) {
+    super(props);
+    // Initialize Default State
+    this.state = {
+        treasureMapsData: [],
+    };
+  }
   
-    componentDidMount() {
+  componentDidMount() {
     // get map content (all maps) 
-        get("/api/treasures").then((treasureMapsDataObjs) => {
-            this.setState({ treasureMapsData: treasureMapsDataObjs })
-        });
-    }
+    get("/api/treasures").then((treasureMapsDataObjs) => {
+      this.setState({ treasureMapsData: treasureMapsDataObjs })
+    });
+  }
 
-    render() {
-        return (
-            <div className="featured-image-block-grid">
-                <div className="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center">
-                    <h2>Choose a treasure map</h2>
-                    <p>X marks the spot.</p>
-                </div>
-                {this.state.treasureMapsData.map((treasureMapContent) => (
-                    <SingleMapCard 
-                        treasure_id={treasureMapContent._id} 
-                        total_steps={treasureMapContent.treasureSteps.length}
-                    />
-                ))}
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="pageContainer">
+        <div className="title">
+          <h1><b>choose a treasure map</b></h1>
+        </div>
+        <div className="cardContainer">
+          {this.state.treasureMapsData.map((treasureMapContent) => (
+            <SingleMapCard 
+              treasure_id={treasureMapContent._id} 
+              creator_name={treasureMapContent.creator_name}
+              // total_steps={treasureMapContent.treasureSteps.length}
+            />
+          ))}
+        </div>
+    </div>
+    );
+  }
 }
   
 export default Collection;

@@ -31,7 +31,22 @@ class StepCardSeek extends Component {
         stepData: null ,
         totalSteps: null,
         lastStep: false,
+        buttonText: "next location",
+        moreInfo: null,
     };
+  }
+
+  includeExtra = () => {
+    if (this.state.moreInfo) {
+      return (
+        // <br />
+        // <div className="grid-y grid-container align-centered">
+        <>
+        <h5><b>did you know?</b></h5>
+        <h6>{this.state.moreInfo}</h6>
+        </>
+      );
+    }
   }
 
   handleSubmit = () => {
@@ -46,7 +61,7 @@ class StepCardSeek extends Component {
         let nextStep = this.state.currentStep + 1;
         let finalStep = this.state.totalSteps-1;
 
-        nextStep == finalStep && this.setState({ lastStep: true });
+        nextStep == finalStep && this.setState({ lastStep: true, buttonText: "I found treasure" });
 
         this.setState({ currentStep: nextStep });
         this.setState({ userInput: "" })
@@ -73,7 +88,7 @@ class StepCardSeek extends Component {
         word += str[i];
       }
       else {
-        word += "x";
+        word += "#";
       }
     }
     return word;
@@ -97,18 +112,17 @@ class StepCardSeek extends Component {
     // return null;
     if (this.state.stepData) {
       return (        
-      <div>
-
-        <br/>
+        <div>
 
         {/* Card container */}
-        <div className="grid-y grid-container card-container large">
-          <div className="cell card-header">
-            <div className="card-title">Location {this.state.stepData.step}</div>
-          </div>
+          <div className="grid-y grid-container card-container large">
+            <div className="cell card-header">
+              <div className="card-title"><b>location {this.state.stepData.step} of {this.state.totalSteps}</b></div>
+              {/* <div className="card-subtitle">Step {this.props.currentStep} of {this.props.totalSteps}</div> */}
+            </div>
           
-          {/* Map and Checkpoint */}
-          <div className="cell grid-x grid-container grid-margin-x">
+            {/* Map and Checkpoint */}
+            <div className="cell grid-x grid-container grid-margin-x">
               <div className="cell large-8 thumbnail map-container" id="mapThumbnailContainerID">
                 <Map
                   position={this.state.stepData.position}
@@ -120,56 +134,45 @@ class StepCardSeek extends Component {
                   position={this.state.stepData.position}
                 />
               </div>
+
+              {/* Descriptions */}
               <div className="cell large-4">
-                <h5>step {this.state.stepData.step_id}</h5>
-                <h5>TO-DO</h5>
-                <br />
-                <div className="grid-y grid-container align-centered">
-                  {/* <h6>- add map title + creator info</h6> */}
-                  <h6>- add creator content (eg. interesting info about this location)</h6>
-                </div>
-              </div>
-            </div>
+                {this.includeExtra()}
 
-            <hr className="cell divider" />
-
-          {/* Description  */}
-          <h5>Are you at the right location?</h5>
-            <div className="cell description-container">
-              <label> 
-                <br/>
-                <h6>Location description:</h6>
+                <h5><b>are you at the right place?</b></h5>
+                <h6>location description:</h6>
                 <div>{this.state.stepData.description}</div>
                 <br/>
-                <h6>Answer the following question:</h6>
-                
-                <div>{this.state.stepData.question}</div>
+
+                <h5><b>look around you.</b></h5>
+                {/* <h6>answer the following question:</h6> */}
+                <h6>{this.state.stepData.question}</h6>
                 <div>
                   <br/>
                   <input 
                     value={this.state.userInput}
                     onChange={this.handleChange}
                     type="text" 
-                    placeholder="Answer" 
+                    placeholder="answer" 
                     required >
                   </input>
                 </div>
-                {/* <div>(The answer's length is {this.WordCount(this.state.stepData.answer)} word(s) or number(s)</div> */}
-                <div>( Answer form: {this.answerHint(this.state.stepData.answer)} )</div>
+                <div>( answer looks like: {this.answerHint(this.state.stepData.answer)} )</div>
+                <br/>
                 <div className="grid-x grid-container align-spaced grid-margin-x">
                   <button
                     // className="cell shrink button-rounded-hover">
                     onClick={this.handleSubmit}
                     className="button large warning">
-                      submit
+                      {this.state.buttonText}
                   </button>
-                </div>         
-                <br/>
-              </label>
+                </div> 
+              </div>
             </div>
-            <br/>
+          </div>
         </div>
-        </div>
+
+            
       );
     }
     else {
