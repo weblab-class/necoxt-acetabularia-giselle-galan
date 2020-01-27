@@ -85,12 +85,12 @@ class StepCard extends Component {
     let y = e.pageY || e.clientY + scrollY;
     let xMapContainer = document.getElementById('mapThumbnailContainerID').offsetLeft;
     let yMapContainer = document.getElementById('mapThumbnailContainerID').offsetTop;
-    // let xMap = document.getElementById('imageID').offsetLeft;
-    // let yMap = document.getElementById('imageID').offsetTop;
     let xMap = 4; // border from thumbnail
     let yMap = 4; // border from thumbnail
+    let xPercent = (x-xMapContainer-xMap)/document.getElementById('mapThumbnailContainerID').clientWidth;
+    let yPercent = (y-yMapContainer-yMap)/document.getElementById('mapThumbnailContainerID').clientHeight;
     this.setState({data: 
-      {...this.state.data, position: {x: x-xMapContainer-xMap, y: y-yMapContainer-yMap},}
+      {...this.state.data, position: {x: xPercent, y: yPercent},}
     });
   }
 
