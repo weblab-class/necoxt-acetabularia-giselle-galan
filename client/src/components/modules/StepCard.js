@@ -106,16 +106,18 @@ class StepCard extends Component {
     })
   }
 
+  fileChangedHandler = (event) => {
+    const file = event.target.files[0]
+  }
+
+  uploadHandler = () => {
+    
+  }
+
   render() {
     if (this.state.data) {
       return (
-        // <Test />
-        // <MultistepCheckout />
         <div>
-          {/* <link
-            rel="stylesheet"
-            href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"
-          /> */}
           <br />
   
           {/* NavBar */}
@@ -165,6 +167,8 @@ class StepCard extends Component {
                     {/* <option value="FloorPlan">Floor Plan</option> */}
                   </select>
                   <p className="or-divider"><span>or</span></p>
+                  {/* <input type="file" onChange={this.fileChangedHandler}>Upload Your Own Map</input> */}
+                  {/* <button onClick={this.uploadHandler}>Upload!</button> */}
                   <label htmlFor="FoldMap" className="button">Upload Your Own Map</label>
                 </div>
               </div>

@@ -160,8 +160,13 @@ class Create extends Component {
     if (this.state.currentStep > 0) {
       return (
         <>
-        <div className="">
+        <div className="create-background">
           <div className="">
+            <NavBar 
+              handleLogin={this.props.handleLogin}
+              handleLogout={this.props.handleLogout}
+              userId={this.props.userId}
+            />
             <StepCard
               key={this.state.steps[this.state.currentStep - 1].step_id}
               data={this.state.steps[this.state.currentStep - 1]}

@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, Profiler } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Home from "./pages/Home.js";
 import Create from "./pages/Create.js";
-import NavBar from "./modules/NavBar.js";
+import Profile from "./pages/Profile.js";
+// import NavBar from "./modules/NavBar.js";
 import Seek from "./pages/Seek.js";
 import Collection from "./pages/Collection.js"
 
@@ -51,23 +52,43 @@ class App extends Component {
   render() {
     return (
       <>
-        <NavBar 
-         handleLogin={this.handleLogin}
-         handleLogout={this.handleLogout}
-         userId={this.state.userId}
-        />
         <Router>
           <Home
             path="/" 
+            handleLogin={this.handleLogin}
+            handleLogout={this.handleLogout}
+            userId={this.state.userId}
           />
           <Create 
             path="/create/"
+            handleLogin={this.handleLogin}
+            handleLogout={this.handleLogout}
+            userId={this.state.userId}
+          />
+          {/* <Profile
+            path="/profile/:userId"
+            userId={this.state.userId}
+          /> */}
+          <Profile
+            path="/profile/"
+            handleLogin={this.handleLogin}
+            handleLogout={this.handleLogout}
             userId={this.state.userId}
           />
           {/* <Seek path="/seek/" />  */}
           {/* <Seek path="/seek/:map_id" /> */}
-          <Seek path="/seek/:treasure_id" />
-          <Collection path="/maps/" />
+          <Seek 
+            path="/seek/:treasure_id" 
+            handleLogin={this.handleLogin}
+            handleLogout={this.handleLogout}
+            userId={this.state.userId}
+          />
+          <Collection 
+            path="/maps/" 
+            handleLogin={this.handleLogin}
+            handleLogout={this.handleLogout}
+            userId={this.state.userId}
+          />
           <NotFound default />
         </Router>
       </>
