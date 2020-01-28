@@ -42,6 +42,7 @@ class StepCard extends Component {
     super(props);
     this.state = {
       data: null,
+      ownMap: null,
     };
   }
 
@@ -102,19 +103,26 @@ class StepCard extends Component {
 
   changeMap = (event) => {
     this.setState({data:
-      {...this.state.data, map: event.target.value},
+      {...this.state.data, map: event.target.value, ownMap: null,},
+      ownMap: null,
     })
   }
 
   fileChangedHandler = (event) => {
-    const file = event.target.files[0]
+    const file = event.target.files[0];
+    this.setState({
+      ownMap: file,
+    });
   }
 
   uploadHandler = () => {
-    
+    this.setState({data:
+      {...this.state.data, ownMap: this.state.ownMap, map: "OwnMap"},
+    });
   }
 
   render() {
+    console.log(this.state)
     if (this.state.data) {
       return (
         <div>
@@ -148,6 +156,7 @@ class StepCard extends Component {
                   position={this.state.data.position}
                   setPos={this.setPos}
                   map={this.state.data.map}
+                  ownMap={this.state.data.ownMap}
                   className="map"
                 />
                 <Checkpoint
@@ -164,12 +173,16 @@ class StepCard extends Component {
                     {this.state.data.map === "TunnelMap" ? (<option selected="selected" value="TunnelMap">Campus Map</option>) : (<option value="TunnelMap">Campus Map</option>)} */}
                     <option value="CampusMap">Campus Map</option>
                     <option value="TunnelMap">Tunnel Map</option>
+                    {/* <option value="OwnMap">Your Own Map</option> */}
                     {/* <option value="FloorPlan">Floor Plan</option> */}
                   </select>
                   <p className="or-divider"><span>or</span></p>
-                  {/* <input type="file" onChange={this.fileChangedHandler}>Upload Your Own Map</input> */}
-                  {/* <button onClick={this.uploadHandler}>Upload!</button> */}
-                  <label htmlFor="FoldMap" className="button">Upload Your Own Map</label>
+                  <input type="file" onChange={this.fileChangedHandler} className="button u-textCenter"/>
+                  {this.state.ownMap
+                    ? (<button onClick={this.uploadHandler} className="button">Upload!</button>)
+                    : null
+                  }
+                  {/* <label htmlFor="FoldMap" className="button">Upload Your Own Map</label> */}
                 </div>
               </div>
             </div>
