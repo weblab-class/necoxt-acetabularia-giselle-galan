@@ -73,15 +73,15 @@ class Descriptions extends Component {
         onChange={this.handleDescriptionChange}
         required 
       />
-      <div className="u-heading">question to unlock next location:</div>
+      <div className="u-heading">question to unlock next location or to verify treasure:</div>
       <input 
         type="text" 
-        placeholder="ex: 'how much is a sm coffee?', 'what is the sculpture name?'" 
+        placeholder="ex: 'how much is a sm coffee?', 'what is the sculpture name?', 'what is written on the treasure?'" 
         value={this.state.questionValue}
         onChange={this.handleQuestionChange}
         required 
       />
-      <div className="u-heading">answer that unlocks next location:</div>
+      <div className="u-heading">answer that unlocks next location or that verifies treasure:</div>
       <input 
         type="text" 
         placeholder="ex: '1.99', 'the alchemist', etc" 

@@ -215,7 +215,7 @@ class Create extends Component {
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     if (this.state.currentStep > 0) {
       return (
         <>

@@ -23,7 +23,7 @@ class OverviewCreate extends Component {
       treasure_hint: "",
       treasure_category: "",
       isBlank: true,
-      coverMap: null,
+      otherSelected: false,
     };
   }
 
@@ -36,18 +36,18 @@ class OverviewCreate extends Component {
       else if (this.state.treasure_is == "") {
         alert('please fill field 2')
       }
-      else if (this.state.treasure_category == "") {
-        alert('please select a destination')
-      }
-      else if (this.state.treasure_category == "other" && this.state.isBlank) {
+      // else if (this.state.treasure_category == "" && !(this.state.otherSelected)) {
+      //   alert('please select a destination')
+      // }
+      else if (this.state.otherSelected && this.state.isBlank) {
         alert('please input "other" field')
       }
       else if (this.state.treasure_hint == "") {
         alert('please fill field 5')
       }
-      else if (this.state.treasure_category != "other" && !(this.state.isBlank)) {
-        alert('"other" was not selected')
-      }
+      // else if (!(this.state.otherSelected) && !(this.state.isBlank)) {
+      //   alert('"other" was not selected')
+      // }
       else {
         let data = {
           map_title: this.state.map_title,
@@ -57,6 +57,7 @@ class OverviewCreate extends Component {
         };
         
         this.props.handleCreateOverviewSubmit(data);
+        // console.log(data);
 
         navigate(`/create/`);
       }
@@ -74,6 +75,7 @@ class OverviewCreate extends Component {
   handleTreasureChange = event => {
     const input = event.target.value;
     this.setState({ treasure_is: input });
+
   };
 
   handleHintChange = event => {
@@ -81,10 +83,10 @@ class OverviewCreate extends Component {
     this.setState({ treasure_hint: input });
   };
 
-  handleCategoryChange = event => {
-    const input = event.target.value;
-    this.setState({ treasure_category: input });
-  };
+  // handleCategoryChange = event => {
+  //   const input = event.target.value;
+  //   this.setState({ treasure_category: input });
+  // };
 
   handleOtherChange = event => {
     const input = event.target.value;
@@ -96,19 +98,29 @@ class OverviewCreate extends Component {
       }
   };
 
+  handleSelectOther = (event) => {
+    this.setState({
+      otherSelected: event.target.value === "other",
+    });
+  }
+
   chooseCategory = (event) => {
     const input = event.target.value;
-    this.setState({ treasure_category: input });
+    if (input === "other") {
+      this.setState({
+        otherSelected: true ,
+      });
+    }
+    else {
+      this.setState({ treasure_category: input, otherSelected: false });
+    }
   };
 
   componentDidMount() {
     }
   
   render() {
-    let mapMaping = {
-      "CoverMap": this.state.coverMap ? this.state.coverMap.imgSrc : null,
-    };
-    // this.state && console.log(this.state);
+    // console.log(this.state.treasure_category);
     return (
       <div className="pageContainer">
         <NavBar
@@ -117,7 +129,9 @@ class OverviewCreate extends Component {
           userId={this.props.userId}
         />
         <div className="title">.create</div>
+        <div className="subtitle">(part zero: hide your treasure and mark it with a special code or key. like an "x"!)</div>
         <div className="subtitle">part one: describe your hidden treasure</div>
+        <br/>
         <div className="box">
         <form>
           <div className="form-group">
@@ -139,9 +153,10 @@ class OverviewCreate extends Component {
             <label className="heading">which best describes your treasure's ultimate destination?</label>
             <select 
               className="form-control" 
-              onChange={this.chooseCategory}
+              onChange={this.chooseCategory} //, this.handleSelectOther}
+              defaultValue="hiddenValue"
             >
-              <option value="" selected="selected" hidden="hidden">for the seeker's...</option> 
+              <option value="hiddenValue" hidden="hidden">for the seeker's...</option> 
               <option value="bookshelf">bookshelf</option>
               <option value="snack shelf">snack shelf</option>
               <option value="accessories box">accessories box</option>
@@ -152,14 +167,18 @@ class OverviewCreate extends Component {
               <option value="bathroom">bathroom</option>
               <option value="other">other</option>
             </select>
+            {
+              this.state.otherSelected ? 
+              <>
+                <label className="heading">if you selected "other," input a destination here</label>
+                <input 
+                  type="email"              
+                  className="form-control" 
+                  placeholder="ex: makeup cabinet, backpack" 
+                  onChange={this.handleOtherChange}
+                /></> : null
+            }
 
-            <label className="heading">if you selected "other," input a destination here</label>
-            <input 
-              type="email"              
-              className="form-control" 
-              placeholder="ex: makeup cabinet, backpack" 
-              onChange={this.handleOtherChange}
-            />
 
           <label className="heading">what kind of person would love your treasure?</label>
             <input 
@@ -176,7 +195,7 @@ class OverviewCreate extends Component {
           <button
             onClick={this.handleSubmit}
             className="button large warning u-rounded">
-              step two
+              part two
           </button>
         </div>
         </div>
