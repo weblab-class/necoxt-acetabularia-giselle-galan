@@ -27,7 +27,7 @@ class Created extends Component {
   render() {
     // console.log(this.props.user);
     if (this.state.treasureMapsData.length !== 0) {
-      console.log("test",this.state.treasureMapsData)
+      // console.log("test",this.state.treasureMapsData)
       return (
         <div className="cardContainer">
           {this.state.treasureMapsData.map((treasureMapContent) => (

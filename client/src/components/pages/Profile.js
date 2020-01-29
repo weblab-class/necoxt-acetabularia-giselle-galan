@@ -31,8 +31,8 @@ class Profile extends Component {
     this.contentEditable_3 = React.createRef();
     // Initialize Default State
     this.state = {
-      user: null,
-      viewerId: null,
+      // user: null,
+      viewerGoogleId: null,
       profileDescription: defaultDescription,
       aboutMe: {
         date: moment().format("MMMM Do YYYY, h:mm:ss a"),
@@ -49,18 +49,17 @@ class Profile extends Component {
     // console.log(1, this.props.viewerId);
     get("/api/whoami").then((user) => {
       // console.log(1, user);
-      if (user._id) {
-        this.setState({ viewerId: user._id });
+      if (user.googleid) {
+        this.setState({ viewerGoogleId: user.googleid });
       }
     });
-    get("/api/user", {_id: this.props.userId}).then((user) => {
+    get("/api/user_googleId", this.props.user).then((user) => {
       // console.log(user);
       let profileDescription = this.state.profileDescription;
       let aboutMe = this.state.aboutMe;
-      user[0].profileDescription ? profileDescription = user[0].profileDescription : null;
-      user[0].aboutMe ? aboutMe = user[0].aboutMe : null;
+      (user[0] && user[0].profileDescription) ? profileDescription = user[0].profileDescription : null;
+      (user[0] && user[0].aboutMe) ? aboutMe = user[0].aboutMe : null;
       this.setState({
-        user: user[0],
         profileDescription: profileDescription,
         aboutMe: aboutMe,
       });
@@ -116,11 +115,11 @@ class Profile extends Component {
     )
   }
 
-  editableStatus = () => (this.props.userId !== this.state.viewerId);
+  editableStatus = () => (this.props.user.googleid !== this.state.viewerGoogleId);
 
   render() {
-    // console.log(this.state);
-    if (this.state.user && this.state.viewerId){
+    // console.log(this.props);
+    if (this.props.user && this.state.viewerGoogleId){
       return (
         <>
         {/* <div className="profile-background" style={{"border": "1px dashed",}}> */}
@@ -128,7 +127,7 @@ class Profile extends Component {
           <NavBar 
             handleLogin={this.props.handleLogin}
             handleLogout={this.props.handleLogout}
-            userId={this.props.userId}
+            userId={this.props.user._id}
           />
           {/* <div className="profile-avatarContainer" style={{"border": "1px dashed",}}> */}
           <div className="profile-avatarContainer">
@@ -142,8 +141,8 @@ class Profile extends Component {
               {/* <div className="profile-descriptions" style={{"border": "1px red dashed",}}> */}
               <div className="profile-descriptions">
                 {/* <div className="profile-name" style={{"border": "1px red dashed",}}>Tamsen Vlasta</div> */}
-                {/* <div className="profile-name" style={{"border": "1px red dashed",}}>{this.state.user.name}</div> */}
-                <div className="profile-name">{this.state.user.name}</div>
+                {/* <div className="profile-name" style={{"border": "1px red dashed",}}>{this.props.user.name}</div> */}
+                <div className="profile-name">{this.props.user.name}</div>
                 {/* <div className="profile-line" style={{"border": "1px red dashed",}}> */}
                 <div className="profile-line">
                   <div className="pin icon"/> 
@@ -204,7 +203,7 @@ class Profile extends Component {
         }
         {this.state.tagSelection == "Created" ? 
           <Created 
-            user={this.state.user}
+            user={this.props.user}
           />
           : null
         }
@@ -224,7 +223,7 @@ class Profile extends Component {
           <NavBar 
             handleLogin={this.props.handleLogin}
             handleLogout={this.props.handleLogout}
-            userId={this.props.userId}
+            userId={null}
           />
         </div>
       );
