@@ -4,7 +4,16 @@
   padding: var(--s) var(--s);
   background: linear-gradient(0.25turn, var(--secondary-blue), var(--dim), var(--secondary-yellow));
   opacity: .9;
-  /* box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.3); */
+}
+
+.home-background .NavBar-container {
+  padding: var(--s) var(--s);
+  background: transparent;
+}
+
+.profile-background .NavBar-container {
+  padding: var(--s) var(--s);
+  background: transparent;
 }
 
 .NavBar-title {
@@ -12,6 +21,20 @@
   /* color: #694A38; */
   color: var(--primary-brown);
   font-size: var(--m);
+  font-weight: bold;
+}
+
+.home-background .NavBar-title {
+  /* color: #694A38; */
+  color: var(--secondary-yellow);
+  font-size: var(--l);
+  font-weight: bold;
+}
+
+.profile-background .NavBar-title {
+  /* color: #694A38; */
+  color: var(--secondary-yellow);
+  font-size: var(--l);
   font-weight: bold;
 }
 
@@ -69,11 +92,49 @@
   /* font-family: 'Englebert', sans-serif; */
 }
 
+.home-background .hover-underline-menu .menu-container .underline-from-center {
+  position: relative;
+  color: var(--secondary-yellow);
+  padding: 0.8rem 1.5rem;
+  font-size: var(--m);
+  font-weight: bold;
+  /* font-family: 'Englebert', sans-serif; */
+}
+
+.profile-background .hover-underline-menu .menu-container .underline-from-center {
+  position: relative;
+  color: var(--secondary-yellow);
+  padding: 0.8rem 1.5rem;
+  font-size: var(--m);
+  font-weight: bold;
+  /* font-family: 'Englebert', sans-serif; */
+}
+
 .hover-underline-menu .menu-container .underline-from-center::after {
   content: "";
   position: absolute;
   top: calc(100% - 0.125rem);
   border-bottom: 0.125rem solid var(--primary-brown);
+  left: 50%;
+  right: 50%;
+  transition: all 0.5s ease;
+}
+
+.home-background .hover-underline-menu .menu-container .underline-from-center::after {
+  content: "";
+  position: absolute;
+  top: calc(100% - 0.125rem);
+  border-bottom: 0.125rem solid var(--secondary-yellow);
+  left: 50%;
+  right: 50%;
+  transition: all 0.5s ease;
+}
+
+.profile-background .hover-underline-menu .menu-container .underline-from-center::after {
+  content: "";
+  position: absolute;
+  top: calc(100% - 0.125rem);
+  border-bottom: 0.125rem solid var(--secondary-yellow);
   left: 50%;
   right: 50%;
   transition: all 0.5s ease;
