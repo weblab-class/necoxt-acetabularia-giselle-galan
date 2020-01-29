@@ -7,6 +7,7 @@ const TreasureSchema = new mongoose.Schema({
     step_id: String,
     step: Number,
     map: String,
+    ownMap: Object,
     position: {
       x: Number,
       y: Number,
