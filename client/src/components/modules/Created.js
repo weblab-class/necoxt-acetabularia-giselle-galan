@@ -27,13 +27,13 @@ class Created extends Component {
   render() {
     // console.log(this.props.user);
     if (this.state.treasureMapsData.length !== 0) {
-      // console.log("test",this.state.treasureMapsData)
       return (
         <div className="cardContainer">
           {this.state.treasureMapsData.map((treasureMapContent) => (
             <SingleMapCard 
               treasure_id={treasureMapContent._id} 
               creator_name={treasureMapContent.creator_name}
+              map_title={treasureMapContent.treasureContent.map_title}
               // total_steps={treasureMapContent.treasureSteps.length}
             />
           ))}
