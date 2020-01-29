@@ -49,7 +49,7 @@ class OverviewCreate extends Component {
         alert('"other" was not selected')
       }
       else {
-        navigate(`/create-2/`);
+        // navigate(`/create-2/`);
       }
     // }
     // else {

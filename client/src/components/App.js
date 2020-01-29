@@ -63,7 +63,8 @@ class App extends Component {
             userId={this.state.userId}
           />
           <Create 
-            path="/create-2/"
+            // path="/create-2/"
+            path="/create/"
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
             userId={this.state.userId}
