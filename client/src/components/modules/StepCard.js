@@ -42,8 +42,42 @@ class StepCard extends Component {
     super(props);
     this.state = {
       data: null,
-      ownMap: null,
+      upLoadedFile: null,
     };
+  }
+
+  checkValidInput = (newData) => {
+    if (!newData.description) {
+      alert("Please enter the description of your treasure!");
+      return false;
+    } else if (!newData.question) {
+      alert("Please enter the question for verification!");
+      return false;
+    } else if (!newData.answer) {
+      alert("Please enter answer to your question!");
+      return false;
+    } else if (!(newData.position.x || newData.position.y)) {
+      return (confirm("Are you sure you don't need to place a checkpoint?"));
+    } else {
+      return true;
+    }
+  }
+
+  checkEmptyState = (newData) => {
+    if (
+      !(this.props.currentStep > 1
+        || (newData.map != "CampusMap")
+        || newData.ownMap
+        || newData.position.x 
+        || newData.position.y 
+        || newData.description
+        || newData.question
+        || newData.answer)
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   onClickButton = (descriptions, type) => {
@@ -56,16 +90,16 @@ class StepCard extends Component {
 
     switch (type) {
       case "Finish":
-        this.props.finishCreate(newData);
+        this.checkValidInput(newData) ? this.props.finishCreate(newData) : null;
         break;
       case "NextStep":
-        this.props.nextStep(newData);
+        this.checkValidInput(newData) ? this.props.nextStep(newData) : null;
         break;
       case "PreviousStep":
         this.props.previousStep(newData);
         break;
       case "Delete":
-        this.props.deleteStep();
+        this.checkEmptyState(newData) ? alert("This is the first step!") : this.props.deleteStep();
         break;
     }
 
@@ -104,21 +138,51 @@ class StepCard extends Component {
   changeMap = (event) => {
     this.setState({data:
       {...this.state.data, map: event.target.value, ownMap: null,},
-      ownMap: null,
+      upLoadedFile: null,
     })
+  }
+
+  isFileImage = (file) => {
+      const acceptedImageTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+  
+      return file && acceptedImageTypes.includes(file['type']);
+  }
+
+  checkFileSize = (file) => {
+    return file && (file['size'] < 1024*1024*5);
   }
 
   fileChangedHandler = (event) => {
     const file = event.target.files[0];
     this.setState({
-      ownMap: file,
+      upLoadedFile: file,
     });
   }
 
   uploadHandler = () => {
-    this.setState({data:
-      {...this.state.data, ownMap: this.state.ownMap, map: "OwnMap"},
-    });
+    if (this.isFileImage(this.state.upLoadedFile)) {
+      if (this.checkFileSize(this.state.upLoadedFile)) {
+        let reader = new FileReader();
+        reader.onloadend = function () {
+          this.setState({data:
+            {...this.state.data,
+              ownMap: {
+                imgSrc: reader.result,
+                imgName: this.state.upLoadedFile.name,
+                imgSize: this.state.upLoadedFile.size,
+                imgType: this.state.upLoadedFile.type,
+              },
+              map: "OwnMap",
+            },
+          });
+        }.bind(this);
+        reader.readAsDataURL(this.state.upLoadedFile);
+      } else {
+        alert("Image size should be smaller than 5MB!")
+      }
+    } else {
+      alert("Please upload a valid image!")
+    }
   }
 
   render() {
@@ -178,7 +242,7 @@ class StepCard extends Component {
                   </select>
                   <p className="or-divider"><span>or</span></p>
                   <input type="file" onChange={this.fileChangedHandler} className="button u-textCenter"/>
-                  {this.state.ownMap
+                  {this.state.upLoadedFile
                     ? (<button onClick={this.uploadHandler} className="button">Upload!</button>)
                     : null
                   }

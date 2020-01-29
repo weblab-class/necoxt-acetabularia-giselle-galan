@@ -57,6 +57,38 @@ class Create extends Component {
     }
   }
 
+  checkValidInput = (testData) => {
+    if (!testData.description) {
+      alert("Please enter the description of your treasure!");
+      return false;
+    } else if (!testData.question) {
+      alert("Please enter the question for verification!");
+      return false;
+    } else if (!testData.answer) {
+      alert("Please enter answer to your question!");
+      return false;
+    } else if (!(testData.position.x || testData.position.y)) {
+      return (confirm("Are you sure you don't need to place a checkpoint?"));
+    } else {
+      return true;
+    }
+  }
+
+  checkValidSubmission = (dataSubmission) => {
+    let i = 0;
+    for (i = 0; i < dataSubmission.length; i++) {
+      if (this.checkValidInput(dataSubmission[i])) {
+        continue;
+      } else {
+        this.setState({
+          currentStep: i + 1,
+        });
+        return false;
+      }
+    }
+    return true;
+  }
+
   finishCreate = (data) => {
     // const body = [{
     //   step_id: String,
@@ -72,18 +104,20 @@ class Create extends Component {
     // }];
 
     if (this.props.userId) {
-      let newSteps = this.state.steps;
-      // save current step
-      if (newSteps) {
-        newSteps[this.state.currentStep - 1] = data;
+      if (this.checkValidSubmission(data)) {
+        let newSteps = this.state.steps;
+        // save current step
+        if (newSteps) {
+          newSteps[this.state.currentStep - 1] = data;
+        }
+        this.setState({
+          steps: newSteps.map((stepObj, i) => (
+            {...stepObj, step: i + 1,}
+          )),
+          currentStep: 1,
+        });
+        post("/api/treasure", this.state.steps);
       }
-      this.setState({
-        steps: newSteps.map((stepObj, i) => (
-          {...stepObj, step: i + 1,}
-        )),
-        currentStep: 1,
-      });
-      post("/api/treasure", this.state.steps)
     } else {
       alert("Please Login");
     }
@@ -91,11 +125,34 @@ class Create extends Component {
 
   deleteStep = () => {
     let newSteps = this.state.steps;
-    newSteps.splice(this.state.currentStep-1, 1);
-    this.setState({
-      steps: newSteps,
-      currentStep: this.state.currentStep - 1,
-    });
+    if (this.state.currentStep > 1) {
+      newSteps.splice(this.state.currentStep-1, 1);
+      this.setState({
+        steps: newSteps,
+        currentStep: this.state.currentStep - 1,
+      });
+    } else if (this.state.steps.length === 1) {
+      newSteps[0] = {
+        step_id: new mongoose.Types.ObjectId(),
+        map: "CampusMap",
+        ownMap: null,
+        position: {
+          x: null,
+          y: null,
+        },
+        description: "",
+        question: "",
+        answer: "",
+      };
+      this.setState({
+        steps: newSteps,
+      });
+    } else {
+      newSteps.splice(this.state.currentStep-1, 1);
+      this.setState({
+        steps: newSteps,
+      });
+    }
   }
 
   nextStep = (data) => {
@@ -111,6 +168,7 @@ class Create extends Component {
       newSteps = newSteps.concat([{
         step_id: new mongoose.Types.ObjectId(),
         map: "CampusMap",
+        ownMap: null,
         position: {
           x: null,
           y: null,
@@ -157,6 +215,7 @@ class Create extends Component {
   }
 
   render() {
+    console.log(this.state);
     if (this.state.currentStep > 0) {
       return (
         <>

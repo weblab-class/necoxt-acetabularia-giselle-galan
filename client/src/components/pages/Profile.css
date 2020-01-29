@@ -96,6 +96,7 @@ background-image: url("../../public/avatar/DefaultAvatar.jpg"); */
 
 .profile-line {
     position: relative;
+    height: 3vh;
     color: var(--grey);
     font-size: var(--s);
     font-family: 'Open Sans', sans-serif;
@@ -137,6 +138,19 @@ margin: var(--m) var(--s);
     font-weight: bold;
     font-family: 'Open Sans', sans-serif;
     opacity: 0.8;
+}
+
+.hover-underline-menu .menu .underline-from-center-static {
+    position: relative;
+}
+
+.hover-underline-menu .menu .underline-from-center-static::after {
+    content: "";
+    position: absolute;
+    top: calc(100% - 0.125rem);
+    border-bottom: 0.125rem #ffae00 solid;
+    left: 0;
+    right: 0;
 }
 
 .hover-underline-menu .menu .underline-from-center {
@@ -185,6 +199,4 @@ margin: var(--m) var(--s);
     border-radius: 3px;
     background-color: white;
 }
-  
-  
   

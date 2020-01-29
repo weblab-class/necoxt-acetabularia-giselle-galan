@@ -15,26 +15,9 @@ import TunnelMap from "../../public/TunnelMap.png";
 class Map extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      imgFile: null,
-      imgSrc: null,
-    }
   }
 
   render() {
-    // console.log(this.props.ownMap);
-
-    if (this.props.ownMap && this.state.imgFile!=this.props.ownMap) {
-      let reader = new FileReader();
-      reader.onloadend = function () {
-        this.setState({
-          imgSrc: reader.result,
-          imgFile: this.props.ownMap,
-        });
-      }.bind(this)
-      reader.readAsDataURL(this.props.ownMap);
-    }
-    // console.log(this.state.imgSrc);
 
     let mapMaping = {
       // "CampusMap": [CampusMap, 956, 565],
@@ -42,10 +25,13 @@ class Map extends Component {
       // "FloorPlan": ["CampusMap.jpeg", 956, 565],
       "CampusMap": CampusMap,
       "TunnelMap": TunnelMap,
-      "OwnMap": this.state.imgSrc,
+      "OwnMap": this.props.ownMap ? this.props.ownMap.imgSrc : null,
     };
 
+    console.log(this.props.ownMap);
+
     return (
+
       <div id="imageID">
         <img
           // src={mapMaping[this.props.map][0]} 

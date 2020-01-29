@@ -44,6 +44,14 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
+router.get("/users", (req, res) => {
+  User.find().then((users) => res.send(users));
+});
+
+router.get("/user", (req, res) => {
+  User.find({ _id: req.query._id }).then((user) => res.send(user));
+});
+
 router.get("/checkpoints", (req, res) => {
   // get all checkpoints
   // Checkpoint.find({ _id: req.query._id }).then((checkpoints) => res.send(checkpoints));
