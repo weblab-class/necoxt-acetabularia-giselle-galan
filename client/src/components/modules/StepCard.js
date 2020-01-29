@@ -258,7 +258,7 @@ class StepCard extends Component {
             <hr className="cell divider" />
   
             {/* Descriptions */}
-            <div className="u-heading">Describe the location:</div>
+            <div className="u-heading">describe the location:</div>
             <div className="cell description-container">
               <Descriptions
                 descriptionValue={this.state.data.description}

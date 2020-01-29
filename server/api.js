@@ -94,6 +94,7 @@ router.post("/treasure", auth.ensureLoggedIn, (req, res) => {
     creator_id: req.user._id,
     creator_name: req.user.name,
     treasureSteps: req.body,
+    // treasureContent: req.body,
   });
 
   newTreasure.save().then((treasure) => res.send(treasure));

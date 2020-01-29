@@ -229,7 +229,7 @@ class Create extends Component {
             />
             <div className="u-title">.create</div>
 
-            <div className="u-subtitle">guide someone to your treasure</div>
+            <div className="u-subtitle">part two: create a map to your treasure</div>
             
             <StepCard
               key={this.state.steps[this.state.currentStep - 1].step_id}

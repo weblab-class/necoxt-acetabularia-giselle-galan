@@ -1,11 +1,19 @@
 
 .box {
   /* width: 500px; */
+  max-width: 50%;
   display: flex;
   flex-direction: column;
   /* flex-wrap: wrap; */
   justify-content: center;
   /* border: 2px dotted rgb(235, 15, 15); */
+  background: var(--dim);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 80px;
+  opacity: .9;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+
 }
 .box>* {
     flex: 0 0 1;
@@ -16,6 +24,44 @@
     /* background: #0da79a; */
 }
 
+.title {
+  color: var(--primary-red);
+  font-weight: bold;
+  text-align: center;
+  padding: var(--xs);
+  font-size: var(--xl);
+  /* border-style: dashed; */
+}
+
+.subtitle {
+  color: var(--primary-brown);
+  font-weight: bold;
+  font-size: var(--l);
+  text-align: center;
+  padding: var(--xs) var(--xs) var(--m) var(--xs);
+  /* border-style: dashed; */
+}
+
+.heading {
+  color: var(--primary-brown);
+  font-weight: bold;
+  font-size: var(--m);
+  text-align: left;
+  /* padding: var(--xs) var(--xs) var(--m) var(--xs); */
+}
+
+.body {
+  color: var(--primary-brown);
+  font-size: var(--m);
+  text-align: left;
+}
+
+.pageContainer {
+  background-color: #FFFFFF;
+  /* background-color: rgb(255, 255, 128); */
+  /* background-color: transparent; */
+  /* border: 2px dotted rgb(15, 235, 180); */
+}
 
 .progress-indicator {
   list-style: none;

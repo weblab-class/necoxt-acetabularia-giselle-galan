@@ -22,6 +22,7 @@
   background-color: var(--dim);
   /* border: 2px dotted rgb(96, 139, 168); */
   /* color: var(--primary-brown) */
+  box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.3);
 }
 
 .pageContainer {
@@ -31,12 +32,12 @@
 }
 
 img:hover {
-  opacity: 1;
+  opacity: .95;
 }
 
 .imgThumbnail {
   border-radius: 20px;
-  opacity: 0.9;
+  opacity: 0.85;
   /* border-top-right-radius: 20px; */
   /* border-top-left-radius: 20px; */
 }

@@ -68,23 +68,23 @@ class Descriptions extends Component {
       <>
       <input 
         type="text" 
-        placeholder="Ex: 'verdant convenient store', 'white sculpture', etc"
+        placeholder="ex: 'verdant convenient store', 'white sculpture', etc"
         value={this.state.descriptionValue}
         onChange={this.handleDescriptionChange}
         required 
       />
-      <div className="u-heading">A question to unlock the next location:</div>
+      <div className="u-heading">question to unlock next location:</div>
       <input 
         type="text" 
-        placeholder="Ex: 'how much is a sm coffee?', 'what is the sculpture name?'" 
+        placeholder="ex: 'how much is a sm coffee?', 'what is the sculpture name?'" 
         value={this.state.questionValue}
         onChange={this.handleQuestionChange}
         required 
       />
-      <div className="u-heading">Answer that unlocks the next location:</div>
+      <div className="u-heading">answer that unlocks next location:</div>
       <input 
         type="text" 
-        placeholder="Ex: '1.99', 'the alchemist', etc" 
+        placeholder="ex: '1.99', 'the alchemist', etc" 
         value={this.state.answerValue}
         onChange={this.handleAnswerChange}
         required 
@@ -95,25 +95,25 @@ class Descriptions extends Component {
           // className="cell shrink button-rounded-hover"
           className="button large warning u-rounded"
           onClick={this.clickPreviousStep}
-        >GO BACK</button>
+        >go back</button>
         <button
           type="submit"
           // className="cell shrink button-rounded-hover" 
           className="button large warning u-rounded"
           onClick={this.clickDelete}
-        >DELETE</button>
+        >delete</button>
         <button
           type="submit"
           // className="cell shrink button-rounded-hover" 
           className="button large warning u-rounded"
           onClick={this.clickFinish}
-        >FINISH</button>
+        >finish</button>
         <button
           type="submit"
           // className="cell shrink button-rounded-hover"
           className="button large warning u-rounded"
           onClick={this.clickNextStep}
-        >NEXT STEP</button>
+        >next location</button>
       </div>
       </>
     );

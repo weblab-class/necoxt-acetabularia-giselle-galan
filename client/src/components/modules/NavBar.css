@@ -4,6 +4,7 @@
   padding: var(--s) var(--s);
   background: linear-gradient(0.25turn, var(--secondary-blue), var(--dim), var(--secondary-yellow));
   opacity: .9;
+  /* box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.3); */
 }
 
 .NavBar-title {

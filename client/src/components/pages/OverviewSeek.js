@@ -6,9 +6,9 @@ import NavBar from "../modules/NavBar";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
 import "../../utilities.css";
-import "./Seek.css";
+// import "./Seek.css";
 import "../foundation.css";
-import "../pages/Collection.css";
+// import "../pages/Collection.css";
 import "../pages/Overview.css";
 
 // let treasure_id = "5e2bb5592e0d69799286d981";
@@ -65,13 +65,18 @@ class OverviewSeek extends Component {
             userId={this.props.userId}
           />
 
-          <div className="u-title">map title here</div>
-          <div className="u-subtitle">{this.state.data.creator_name} has hidden a treasure for you.</div>
+          <div className="title">map title here</div>
+          <div className="subtitle">{this.state.data.creator_name} has hidden a treasure for you.</div>
 
           <div className="box">
             <div className="u-textCenter">image here</div>
-            <div className="u-textCenter u-heading">description here</div>
-            <div className="u-textCenter u-heading">You must visit {this.state.totalSteps} location(s) in order to find the treasure.</div>
+            <div>
+            <div className="u-textCenter subtitle">is this treasure right for you?</div>
+            <div className="body">according to {this.state.data.creator_name}, this treasure can normally be found in: <b>[destination here]</b>.
+            <br/>
+            and it would be especially appreciated by: <b>[type of person here]</b></div>
+            </div>
+            <div className="u-textCenter subtitle">you must visit {this.state.totalSteps} location(s) in order to find the treasure.</div>
             <div className="u-textCenter">
               <ol className="progress-indicator">
                 {this.progressBar()}

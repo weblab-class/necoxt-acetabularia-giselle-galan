@@ -49,7 +49,7 @@ class Home extends Component {
               <h3><b>x marks the spot</b></h3>
               <br/><br/>
               <div className="home-buttons">
-                <Link to="/create/">
+                <Link to="/create-1/">
                   <button className="button large warning u-rounded">create a map</button>
                 </Link>
                 <Link to="/maps/">

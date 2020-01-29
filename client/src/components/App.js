@@ -8,6 +8,7 @@ import Profile from "./pages/Profile.js";
 import Seek from "./pages/Seek.js";
 import Collection from "./pages/Collection.js"
 import OverviewSeek from "./pages/OverviewSeek.js"
+import OverviewCreate from "./pages/OverviewCreate.js"
 
 
 import "../utilities.css";
@@ -62,7 +63,7 @@ class App extends Component {
             userId={this.state.userId}
           />
           <Create 
-            path="/create/"
+            path="/create-2/"
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
             userId={this.state.userId}
@@ -87,6 +88,12 @@ class App extends Component {
           />
           <OverviewSeek 
             path="/map/:treasure_id" 
+            handleLogin={this.handleLogin}
+            handleLogout={this.handleLogout}
+            userId={this.state.userId}
+          />
+          <OverviewCreate
+            path="/create-1/" 
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
             userId={this.state.userId}

@@ -18,12 +18,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 :root {
-  /* --primary: #1779ba;
-  --primary--dim: #AAA694;
-  --darkgrey: #d4d4d4;
-  --medgrey: #e0e0e0;
-  --grey: #f7f7f7;
-  --white: #fff; */
   --primary-red: #A61C3C;
   --primary-brown: #694A38;
   --secondary-yellow: #F4AC45;
@@ -127,7 +121,6 @@ form {
 
 .u-body {
   color: var(--primary-brown);
-  /* font-weight: bold; */
   font-size: var(--m);
   text-align: left;
 }
