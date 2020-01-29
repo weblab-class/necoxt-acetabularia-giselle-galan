@@ -55,8 +55,9 @@ class OverviewSeek extends Component {
     // if not found: hint of treasure + # of steps (blurred thumbnails of each map?)
     // if currently seeking: found locations + last location saved
     // console.log(this.props.treasure_id)
+    // this.state.data && console.log(this.state.data);
+    // return null;
     if (this.state.data) {
-      // console.log(this.state.data)
       return (
         <div className="pageContainer">
           <NavBar
@@ -69,12 +70,11 @@ class OverviewSeek extends Component {
           <div className="subtitle">{this.state.data.creator_name} has hidden a treasure for you.</div>
 
           <div className="box">
-            <div className="u-textCenter">image here</div>
             <div>
             <div className="u-textCenter subtitle">is this treasure right for you?</div>
-            <div className="body">according to {this.state.data.creator_name}, this treasure can normally be found in: <b>[destination here]</b>.
+            <div className="body">according to {this.state.data.creator_name}, this treasure can normally be found in: <b>{this.state.data.treasureContent.treasure_category}</b>.
             <br/>
-            and it would be especially appreciated by: <b>[type of person here]</b></div>
+            and it would be especially appreciated by: <b>{this.state.data.treasureContent.treasure_hint}</b></div>
             </div>
             <div className="u-textCenter subtitle">you must visit {this.state.totalSteps} location(s) in order to find the treasure.</div>
             <div className="u-textCenter">
@@ -88,16 +88,15 @@ class OverviewSeek extends Component {
                 className="button large warning u-rounded">
                   start seeking
               </button>
-              {/* <Link to={`/seek/${this.props.treasure_id}`} >Start/resume seeking.</Link> */}
             </div>
           </div>
 
         </div>
       );
-    }
-    else {
-      return null;
-    }
+      }
+      else {
+        return null;
+      }
   }
   
 }

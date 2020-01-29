@@ -116,7 +116,7 @@ class Create extends Component {
           )),
           currentStep: 1,
         });
-        post("/api/treasure", this.state.steps);
+        post("/api/treasure", [this.state.steps, this.props.overviewData]);
       }
     } else {
       alert("Please Login");

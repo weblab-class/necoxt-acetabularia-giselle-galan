@@ -30,7 +30,7 @@ class NavBar extends Component {
               {/* <Link to="/" className="underline-from-center" style={{"border": "1px white dashed",}}>Home</Link> */}
               <Link to="/" className="underline-from-center"><b>home</b></Link>
               {/* <Link to="/create/" className="underline-from-center" style={{"border": "1px white dashed",}}>Create</Link> */}
-              <Link to="/create/" className="underline-from-center"><b>create</b></Link>
+              <Link to="/create-1/" className="underline-from-center"><b>create</b></Link>
               {/* <Link to="/maps/" className="underline-from-center" style={{"border": "1px white dashed",}}>Maps</Link> */}
               <Link to="/maps/" className="underline-from-center"><b>maps</b></Link>
               {this.props.userId ? (

@@ -26,6 +26,7 @@ class App extends Component {
     super(props);
     this.state = {
       userId: undefined,
+      CreateOverview: null,
     };
   }
 
@@ -37,6 +38,10 @@ class App extends Component {
       }
     });
   }
+  
+  handleCreateOverviewSubmit = (data) => {
+    this.setState( { CreateOverview: data })
+  };
 
   handleLogin = (res) => {
     console.log(`Logged in as ${res.profileObj.name}`);
@@ -68,6 +73,7 @@ class App extends Component {
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
             userId={this.state.userId}
+            overviewData={this.state.CreateOverview}
           />
           {/* <Profile
             path="/profile/:userId"
@@ -98,6 +104,7 @@ class App extends Component {
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
             userId={this.state.userId}
+            handleCreateOverviewSubmit={this.handleCreateOverviewSubmit}
           />
           <Collection 
             path="/maps/" 
