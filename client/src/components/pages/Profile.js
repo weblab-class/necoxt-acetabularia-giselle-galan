@@ -46,15 +46,12 @@ class Profile extends Component {
 
   componentDidMount() {
     document.title = "User Profile";
-    // console.log(1, this.props.viewerId);
     get("/api/whoami").then((user) => {
-      // console.log(1, user);
       if (user.googleid) {
         this.setState({ viewerGoogleId: user.googleid });
       }
     });
     get("/api/user_googleId", this.props.user).then((user) => {
-      // console.log(user);
       let profileDescription = this.state.profileDescription;
       let aboutMe = this.state.aboutMe;
       (user[0] && user[0].profileDescription) ? profileDescription = user[0].profileDescription : null;
@@ -118,7 +115,6 @@ class Profile extends Component {
   editableStatus = () => (this.props.user.googleid !== this.state.viewerGoogleId);
 
   render() {
-    // console.log(this.props);
     if (this.props.user && this.state.viewerGoogleId){
       return (
         <>
@@ -154,7 +150,6 @@ class Profile extends Component {
                       onChange = {this.changeProfileDescription}
                     />
                   </div>
-                  {/* {console.log(this.state.profileDescription)} */}
                 </div>
               </div>
             </div>

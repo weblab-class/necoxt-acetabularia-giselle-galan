@@ -28,7 +28,7 @@ class Map extends Component {
       "OwnMap": this.props.ownMap ? this.props.ownMap.imgSrc : null,
     };
 
-    console.log(this.props.ownMap);
+    // console.log(this.props.ownMap);
 
     return (
 

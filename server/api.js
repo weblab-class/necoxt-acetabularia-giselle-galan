@@ -108,9 +108,14 @@ router.get("/treasure", (req, res) => {
   Treasure.find({ _id: req.query._id }).then((treasures) => res.send(treasures));
 });
 
+router.get("/created_treasure", (req, res) => {
+  // get one treasure map
+  Treasure.find({creator_id: req.query.googleid }).then((treasures) => res.send(treasures));
+});
+
 router.post("/treasure", auth.ensureLoggedIn, (req, res) => {
   const newTreasure = new Treasure({
-    creator_id: req.user._id,
+    creator_id: req.user.googleid,
     creator_name: req.user.name,
     treasureSteps: req.body[0],
     treasureContent: req.body[1],

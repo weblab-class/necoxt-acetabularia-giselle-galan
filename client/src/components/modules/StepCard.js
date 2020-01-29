@@ -187,7 +187,7 @@ class StepCard extends Component {
   }
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     if (this.state.data) {
       return (
         <div>

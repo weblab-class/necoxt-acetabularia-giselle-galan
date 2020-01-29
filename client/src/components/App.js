@@ -33,7 +33,6 @@ class App extends Component {
 
   componentDidMount() {
     get("/api/whoami").then((user) => {
-      console.log("whoami", user);
       if (user._id) {
         // they are registed in the database, and currently logged in.
         this.setState({ userObj: user, userId: user._id });
@@ -46,10 +45,8 @@ class App extends Component {
   };
 
   handleLogin = (res) => {
-    console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
-      console.log("handlelogin", user);
       this.setState({ userObj: user, userId: user._id });
       post("/api/initsocket", { socketid: socket.id });
     });
@@ -61,7 +58,6 @@ class App extends Component {
   };
 
   render() {
-    console.log("render", this.state.userObj);
     return (
       <>
         <Router>
