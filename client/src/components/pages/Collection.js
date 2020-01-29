@@ -43,6 +43,7 @@ class Collection extends Component {
             <SingleMapCard 
               treasure_id={treasureMapContent._id} 
               creator_name={treasureMapContent.creator_name}
+              map_title={treasureMapContent.treasureContent.map_title}
               // filterBy={treasureMapContent.treasureContent.treasure_hint}
               // total_steps={treasureMapContent.treasureSteps.length}
             />
