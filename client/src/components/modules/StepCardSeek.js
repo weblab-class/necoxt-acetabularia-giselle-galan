@@ -32,21 +32,8 @@ class StepCardSeek extends Component {
         totalSteps: null,
         lastStep: false,
         buttonText: "next location",
-        moreInfo: null,
+        answerPrompt: "look around you.",
     };
-  }
-
-  includeExtra = () => {
-    if (this.state.moreInfo) {
-      return (
-        // <br />
-        // <div className="grid-y grid-container align-centered">
-        <>
-        <h5><b>did you know?</b></h5>
-        <h6>{this.state.moreInfo}</h6>
-        </>
-      );
-    }
   }
 
   handleSubmit = () => {
@@ -61,7 +48,11 @@ class StepCardSeek extends Component {
         let nextStep = this.state.currentStep + 1;
         let finalStep = this.state.totalSteps-1;
 
-        nextStep == finalStep && this.setState({ lastStep: true, buttonText: "I found treasure" });
+        nextStep == finalStep && this.setState({ 
+          lastStep: true, 
+          buttonText: "I found treasure!",
+          answerPrompt: "enter treasure key." 
+        });
 
         this.setState({ currentStep: nextStep });
         this.setState({ userInput: "" })
@@ -117,7 +108,7 @@ class StepCardSeek extends Component {
         {/* Card container */}
           <div className="grid-y grid-container card-container large">
             <div className="cell card-header">
-              <div className="card-title"><b>location {this.state.stepData.step} of {this.state.totalSteps}</b></div>
+              <div className="u-heading"><b>location {this.state.currentStep+1} of {this.state.totalSteps}</b></div>
               {/* <div className="card-subtitle">Step {this.props.currentStep} of {this.props.totalSteps}</div> */}
             </div>
           
@@ -137,14 +128,12 @@ class StepCardSeek extends Component {
 
               {/* Descriptions */}
               <div className="cell large-4">
-                {this.includeExtra()}
-
-                <h5><b>are you at the right place?</b></h5>
-                <h6>location description:</h6>
+                <div className="u-heading">are you at the right place?</div>
+                {/* <h6>location description:</h6> */}
                 <div>{this.state.stepData.description}</div>
                 <br/>
 
-                <h5><b>look around you.</b></h5>
+                <div className="u-heading">{this.state.answerPrompt}</div>
                 {/* <h6>answer the following question:</h6> */}
                 <h6>{this.state.stepData.question}</h6>
                 <div>
@@ -157,13 +146,13 @@ class StepCardSeek extends Component {
                     required >
                   </input>
                 </div>
-                <div>( answer looks like: {this.answerHint(this.state.stepData.answer)} )</div>
+                <div className="u-body">( answer looks like: {this.answerHint(this.state.stepData.answer)} )</div>
                 <br/>
                 <div className="grid-x grid-container align-spaced grid-margin-x">
                   <button
                     // className="cell shrink button-rounded-hover">
                     onClick={this.handleSubmit}
-                    className="button large warning">
+                    className="button large warning u-rounded">
                       {this.state.buttonText}
                   </button>
                 </div> 

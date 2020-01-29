@@ -7,7 +7,8 @@ import Profile from "./pages/Profile.js";
 // import NavBar from "./modules/NavBar.js";
 import Seek from "./pages/Seek.js";
 import Collection from "./pages/Collection.js"
-import Overview from "./pages/Overview.js"
+import OverviewSeek from "./pages/OverviewSeek.js"
+
 
 import "../utilities.css";
 
@@ -84,7 +85,7 @@ class App extends Component {
             handleLogout={this.handleLogout}
             userId={this.state.userId}
           />
-          <Overview 
+          <OverviewSeek 
             path="/map/:treasure_id" 
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
@@ -96,6 +97,7 @@ class App extends Component {
             handleLogout={this.handleLogout}
             userId={this.state.userId}
           />
+          {/* <Guide path="/guide/" /> */}
           <NotFound default />
         </Router>
       </>

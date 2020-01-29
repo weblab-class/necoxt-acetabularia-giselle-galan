@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 // import "./Descriptions.css";
 import "../foundation.css"
+import "../../utilities.css";
 
 /**
  * The navigation bar at the top of all pages. Takes no props.
@@ -67,21 +68,23 @@ class Descriptions extends Component {
       <>
       <input 
         type="text" 
-        placeholder="Description" 
+        placeholder="Ex: 'verdant convenient store', 'white sculpture', etc"
         value={this.state.descriptionValue}
         onChange={this.handleDescriptionChange}
         required 
       />
+      <div className="u-heading">A question to unlock the next location:</div>
       <input 
         type="text" 
-        placeholder="Question" 
+        placeholder="Ex: 'how much is a sm coffee?', 'what is the sculpture name?'" 
         value={this.state.questionValue}
         onChange={this.handleQuestionChange}
         required 
       />
+      <div className="u-heading">Answer that unlocks the next location:</div>
       <input 
         type="text" 
-        placeholder="Answer" 
+        placeholder="Ex: '1.99', 'the alchemist', etc" 
         value={this.state.answerValue}
         onChange={this.handleAnswerChange}
         required 
@@ -90,25 +93,25 @@ class Descriptions extends Component {
         <button 
           type="submit" 
           // className="cell shrink button-rounded-hover"
-          className="button large warning"
+          className="button large warning u-rounded"
           onClick={this.clickPreviousStep}
         >GO BACK</button>
         <button
           type="submit"
           // className="cell shrink button-rounded-hover" 
-          className="button large warning"
+          className="button large warning u-rounded"
           onClick={this.clickDelete}
         >DELETE</button>
         <button
           type="submit"
           // className="cell shrink button-rounded-hover" 
-          className="button large warning"
+          className="button large warning u-rounded"
           onClick={this.clickFinish}
         >FINISH</button>
         <button
           type="submit"
           // className="cell shrink button-rounded-hover"
-          className="button large warning"
+          className="button large warning u-rounded"
           onClick={this.clickNextStep}
         >NEXT STEP</button>
       </div>

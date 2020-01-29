@@ -7,6 +7,7 @@ import Descriptions from "./Descriptions";
 
 import "./StepCard.css";
 import "../foundation.css"
+import "../../utilities.css";
 
 /**
  * Step is a component for displaying the created map
@@ -145,8 +146,9 @@ class StepCard extends Component {
           {/* Card content */}
           <div className="grid-y grid-container card-container large">
             <div className="cell card-header">
-              <div className="card-title">Now, Create Your Treasure Map!</div>
-              <div className="card-subtitle">Step {this.props.currentStep} of {this.props.totalSteps}</div>
+              {/* <div className="card-title">Now, Create Your Treasure Map!</div> */}
+              <div className="u-heading">location {this.props.currentStep} of {this.props.totalSteps}</div>
+              {/* <div className="card-subtitle">Step {this.props.currentStep} of {this.props.totalSteps}</div> */}
             </div>
   
             {/* Map and Checkpoint */}
@@ -165,7 +167,7 @@ class StepCard extends Component {
                 />
               </div>
               <div className="cell large-4">
-                <h5>Choose your map type</h5>
+                <div className="u-textCenter u-heading">1. choose your map type</div>
                 <br />
                 <div className="grid-y grid-container align-centered">
                   <select defaultValue={this.state.data.map} onChange={this.changeMap} required >
@@ -183,14 +185,16 @@ class StepCard extends Component {
                     : null
                   }
                   {/* <label htmlFor="FoldMap" className="button">Upload Your Own Map</label> */}
-                </div>
+                  <br />
+                  <div className="u-textCenter u-heading">2. mark a location on the map</div>
+                                  </div>
               </div>
             </div>
   
             <hr className="cell divider" />
   
             {/* Descriptions */}
-            <h5>Tell us a hint to your treasure</h5>
+            <div className="u-heading">Describe the location:</div>
             <div className="cell description-container">
               <Descriptions
                 descriptionValue={this.state.data.description}

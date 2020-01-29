@@ -28,13 +28,13 @@ class NavBar extends Component {
             {/* <div className="menu-container" style={{"border": "1px white dashed",}}> */}
             <div className="menu-container">
               {/* <Link to="/" className="underline-from-center" style={{"border": "1px white dashed",}}>Home</Link> */}
-              <Link to="/" className="underline-from-center">Home</Link>
+              <Link to="/" className="underline-from-center"><b>home</b></Link>
               {/* <Link to="/create/" className="underline-from-center" style={{"border": "1px white dashed",}}>Create</Link> */}
-              <Link to="/create/" className="underline-from-center">Create</Link>
+              <Link to="/create/" className="underline-from-center"><b>create</b></Link>
               {/* <Link to="/maps/" className="underline-from-center" style={{"border": "1px white dashed",}}>Maps</Link> */}
-              <Link to="/maps/" className="underline-from-center">Maps</Link>
+              <Link to="/maps/" className="underline-from-center"><b>maps</b></Link>
               {this.props.userId ? (
-              <Link to="/profile/" className="underline-from-center">Profile</Link>
+              <Link to="/profile/" className="underline-from-center">profile</Link>
               ) : null}
             </div>
           </div>

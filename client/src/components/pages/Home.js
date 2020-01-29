@@ -25,6 +25,7 @@ class Home extends Component {
     return (
         <div className="home-background">
           <NavBar 
+            pageType="home"
             handleLogin={this.props.handleLogin}
             handleLogout={this.props.handleLogout}
             userId={this.props.userId}
@@ -44,15 +45,15 @@ class Home extends Component {
             </div>
 
             <div className="middle-content-section">
-              <h1><b>Campus Treasure Maps</b></h1>
-              <h3>x marks the spot</h3>
+              <h1><b>campus treasure maps</b></h1>
+              <h3><b>x marks the spot</b></h3>
               <br/><br/>
               <div className="home-buttons">
                 <Link to="/create/">
-                  <button className="button large warning">Create a Map</button>
+                  <button className="button large warning u-rounded">create a map</button>
                 </Link>
                 <Link to="/maps/">
-                  <button className="button large warning">Seek Treasure</button>
+                  <button className="button large warning u-rounded">seek treasure</button>
                 </Link>
               </div>
             </div>

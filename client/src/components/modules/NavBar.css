@@ -2,17 +2,15 @@
 
 .NavBar-container {
   padding: var(--s) var(--s);
-  /* background-color: var(--primary); */
-  /* background-color: #ffae00 */
-  /* background-color: #7A4419; */
-  background-color: transparent;
+  background: linear-gradient(0.25turn, var(--secondary-blue), var(--dim), var(--secondary-yellow));
+  opacity: .9;
 }
 
 .NavBar-title {
-  /* color: var(--white); */
-  /* color: #fefefe; */
-  color: #ffae00;
-  font-size: 20px;
+
+  /* color: #694A38; */
+  color: var(--primary-brown);
+  font-size: var(--m);
   font-weight: bold;
 }
 
@@ -24,10 +22,7 @@
 
 .NavBar-link,
 .NavBar-link:visited {
-  /* color: var(--white); */
-  /* color: #fefefe; */
-  color: #ffae00;
-  /* opacity: 0.6; */
+  color: var(--primary-brown);
   text-decoration: none;
   font-weight: bold;
 }
@@ -52,11 +47,12 @@
   margin-right: var(--m);
   width: 150px;
   height: auto;
+  /* background-color: #251602; */
 }
 
 .hover-underline-menu {
   width: 100%;
-  color: #ffae00;
+  color: var(--primary-brown);
 }
 
 .hover-underline-menu .menu-container {
@@ -65,10 +61,10 @@
 
 .hover-underline-menu .menu-container .underline-from-center {
   position: relative;
-  color: #ffae00;
+  color: var(--primary-brown);
   padding: 0.8rem 1.5rem;
-  font-size: var(--l);
-  /* font-weight: bold; */
+  font-size: var(--m);
+  font-weight: bold;
   /* font-family: 'Englebert', sans-serif; */
 }
 
@@ -76,7 +72,7 @@
   content: "";
   position: absolute;
   top: calc(100% - 0.125rem);
-  border-bottom: 0.125rem solid #ffae00;
+  border-bottom: 0.125rem solid var(--primary-brown);
   left: 50%;
   right: 50%;
   transition: all 0.5s ease;

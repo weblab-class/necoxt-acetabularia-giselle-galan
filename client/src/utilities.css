@@ -18,17 +18,23 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 :root {
-  --primary: #1779ba;
+  /* --primary: #1779ba;
   --primary--dim: #AAA694;
   --darkgrey: #d4d4d4;
   --medgrey: #e0e0e0;
   --grey: #f7f7f7;
-  --white: #fff;
+  --white: #fff; */
+  --primary-red: #A61C3C;
+  --primary-brown: #694A38;
+  --secondary-yellow: #F4AC45;
+  --secondary-blue: #92BFB1;
+  --dim: #DAD6D6; 
 
   --xs: 4px;
   --s: 8px;
   --m: 16px;
   --l: 24px;
+  --xl: 48px;
 }
 
 body {
@@ -68,7 +74,7 @@ form {
 }
 
 .u-textCenter {
-  text-align: center;
+  text-align: center !important;
 }
 
 .u-relative {
@@ -89,4 +95,39 @@ form {
   color: var(--primary--dim);
 }
 
+.u-rounded {
+  border-radius: 20px !important;
+}
 
+.u-title {
+  color: var(--primary-red);
+  font-weight: bold;
+  text-align: center;
+  padding: var(--xs);
+  font-size: var(--xl);
+  /* border-style: dashed; */
+}
+
+.u-subtitle {
+  color: var(--primary-brown);
+  font-weight: bold;
+  font-size: var(--l);
+  text-align: center;
+  padding: var(--xs) var(--xs) var(--m) var(--xs);
+  /* border-style: dashed; */
+}
+
+.u-heading {
+  color: var(--primary-brown);
+  font-weight: bold;
+  font-size: var(--m);
+  text-align: left;
+  /* padding: var(--xs) var(--xs) var(--m) var(--xs); */
+}
+
+.u-body {
+  color: var(--primary-brown);
+  /* font-weight: bold; */
+  font-size: var(--m);
+  text-align: left;
+}

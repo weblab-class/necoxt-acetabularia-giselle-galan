@@ -2,6 +2,8 @@ import React, { Component } from "react";
 // import Seek from "../modules/Seek.js";
 import { get } from "../../utilities";
 import SingleMapCard from "../modules/SingleMapCard.js"
+import NavBar from "../modules/NavBar";
+import GoogleLogin, { GoogleLogout } from "react-google-login";
 
 import "../../utilities.css";
 import "../foundation.css";
@@ -26,9 +28,16 @@ class Collection extends Component {
   render() {
     return (
       <div className="pageContainer">
-        <div className="title">
-          <h1><b>choose a treasure map</b></h1>
-        </div>
+        <NavBar 
+          handleLogin={this.props.handleLogin}
+          handleLogout={this.props.handleLogout}
+          userId={this.props.userId}
+        />
+
+        <div className="u-title">.choose</div>
+
+        <div className="u-subtitle">what treasure will you find today</div>
+        
         <div className="cardContainer">
           {this.state.treasureMapsData.map((treasureMapContent) => (
             <SingleMapCard 

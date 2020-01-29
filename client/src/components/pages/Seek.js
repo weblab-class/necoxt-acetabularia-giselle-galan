@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import StepCardSeek from "../modules/StepCardSeek.js";
 import { get } from "../../utilities";
+import NavBar from "../modules/NavBar";
+import GoogleLogin, { GoogleLogout } from "react-google-login";
 
 import "../../utilities.css";
 import "./Seek.css";
 import "../foundation.css";
 import "../pages/Collection.css"
+import "../pages/Home.css"
 
 class Seek extends Component {
     constructor(props) {
@@ -55,10 +58,13 @@ class Seek extends Component {
         // return null;
         return (
           <div className="pageContainer">
-            <div className="title">
-              <h1><b>map title</b></h1>
-              <h4><b><i>{(this.state.treasureMapData[0].creator_name).toLowerCase()} has hidden a treasure for you.</i></b></h4>
-            </div>
+            <NavBar 
+              handleLogin={this.props.handleLogin}
+              handleLogout={this.props.handleLogout}
+              userId={this.props.userId}
+            />
+            <div className="u-title">.seek</div>
+            <div className="u-subtitle">{(this.state.treasureMapData[0].creator_name)} has hidden a treasure for you</div>
             {/* <div> */}
               <StepCardSeek 
                 _id={this.props._id}

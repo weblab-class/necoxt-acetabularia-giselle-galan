@@ -22,8 +22,8 @@ class SingleMapCard extends Component {
       <div>
         <div>
           <div>
-            {/* <Link to={`/map/${this.props.treasure_id}`} > */}
-            <Link to={`/seek/${this.props.treasure_id}`} >
+            <Link to={`/map/${this.props.treasure_id}`} >
+            {/* <Link to={`/seek/${this.props.treasure_id}`} > */}
               <img className="imgThumbnail"
                 src="https://i.imgur.com/49AuhbP.jpg" 
                 // width="463px" 
@@ -33,10 +33,9 @@ class SingleMapCard extends Component {
           </div>
         </div>
         <div className="mapDescription">
-          <b>Map title</b>
-          <br />
-          by {this.props.creator_name}
-        </div>
+          <div className="u-textCenter u-heading">"map title"</div>
+          <div className="u-textCenter u-body">created by {this.props.creator_name}</div>
+      </div>
       </div>
     );
 
