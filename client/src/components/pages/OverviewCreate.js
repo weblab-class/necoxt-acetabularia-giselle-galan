@@ -49,7 +49,16 @@ class OverviewCreate extends Component {
         alert('"other" was not selected')
       }
       else {
-        // navigate(`/create-2/`);
+        let data = {
+          map_title: this.state.map_title,
+          treasure_is: this.state.treasure_is,
+          treasure_category: this.state.treasure_category,
+          treasure_hint: this.state.treasure_hint,
+        };
+        
+        this.props.handleCreateOverviewSubmit(data);
+
+        navigate(`/create/`);
       }
     // }
     // else {
