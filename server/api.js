@@ -52,6 +52,25 @@ router.get("/user", (req, res) => {
   User.find({ _id: req.query._id }).then((user) => res.send(user));
 });
 
+router.get("/user_googleId", (req, res) => {
+  User.find({ googleid: req.query.googleid }).then((user) => res.send(user));
+});
+
+router.post("/user_profile", (req, res) => {
+  const newUser = new User({
+    name: req.user.name,
+    googleid: req.user.googleid,
+    profileDescription: req.body.profileDescription,
+    aboutMe: req.body.aboutMe,
+  })
+  const query = {
+    googleid: req.user.googleid,
+  };
+  
+  User.deleteMany(query).then();
+  newUser.save().then((user) => res.send(user));
+});
+
 router.get("/checkpoints", (req, res) => {
   // get all checkpoints
   // Checkpoint.find({ _id: req.query._id }).then((checkpoints) => res.send(checkpoints));

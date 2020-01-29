@@ -25,6 +25,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      userObj: undefined,
       userId: undefined,
       CreateOverview: null,
     };
@@ -32,9 +33,10 @@ class App extends Component {
 
   componentDidMount() {
     get("/api/whoami").then((user) => {
+      console.log("whoami", user);
       if (user._id) {
         // they are registed in the database, and currently logged in.
-        this.setState({ userId: user._id });
+        this.setState({ userObj: user, userId: user._id });
       }
     });
   }
@@ -47,17 +49,19 @@ class App extends Component {
     console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
-      this.setState({ userId: user._id });
+      console.log("handlelogin", user);
+      this.setState({ userObj: user, userId: user._id });
       post("/api/initsocket", { socketid: socket.id });
     });
   };
 
   handleLogout = () => {
-    this.setState({ userId: undefined });
+    this.setState({ user: undefined, userId: undefined });
     post("/api/logout");
   };
 
   render() {
+    console.log("render", this.state.userObj);
     return (
       <>
         <Router>
@@ -83,7 +87,7 @@ class App extends Component {
             path="/profile/:userId"
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
-            userId={this.state.userId}
+            user={this.state.userObj}
           />
           {/* <Seek path="/seek/" />  */}
           {/* <Seek path="/seek/:map_id" /> */}
