@@ -33,7 +33,7 @@ class SingleMapCard extends Component {
           </div>
         </div>
         <div className="mapDescription">
-          <div className="u-textCenter u-heading">"map title"</div>
+          <div className="u-textCenter u-heading">"{this.props.map_title}"</div>
           <div className="u-textCenter u-body">created by {this.props.creator_name}</div>
           {/* <div className="u-textCenter u-body">for {this.props.filterBy}</div> */}
       </div>

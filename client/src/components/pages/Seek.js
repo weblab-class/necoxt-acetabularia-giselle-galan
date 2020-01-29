@@ -70,6 +70,7 @@ class Seek extends Component {
                 _id={this.props._id}
                 // data={this.state.treasureMapData[0].treasureSteps[this.state.currentStep]}
                 data={this.state.treasureMapData[0].treasureSteps}
+                treasure_is={this.state.treasureMapData[0].treasureContent.treasure_is}
                 // lastStep={this.state.lastStep}
                 // updateStep={this.updateStep}
               />

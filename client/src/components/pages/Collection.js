@@ -36,13 +36,14 @@ class Collection extends Component {
 
         <div className="u-title">.choose</div>
 
-        <div className="u-subtitle">what treasure will you find today</div>
+        <div className="u-subtitle">whose treasure will you find today</div>
         
         <div className="cardContainer">
           {this.state.treasureMapsData.map((treasureMapContent) => (
             <SingleMapCard 
               treasure_id={treasureMapContent._id} 
               creator_name={treasureMapContent.creator_name}
+              map_title={treasureMapContent.treasureContent.map_title}
               // filterBy={treasureMapContent.treasureContent.treasure_hint}
               // total_steps={treasureMapContent.treasureSteps.length}
             />

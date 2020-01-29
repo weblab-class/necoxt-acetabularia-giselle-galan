@@ -41,6 +41,15 @@
   /* border-style: dashed; */
 }
 
+.subtitle-dim {
+  color: var(--dim);
+  font-weight: bold;
+  font-size: var(--l);
+  text-align: center;
+  padding: var(--xs) var(--xs) var(--m) var(--xs);
+  /* border-style: dashed; */
+}
+
 .heading {
   color: var(--primary-brown);
   font-weight: bold;

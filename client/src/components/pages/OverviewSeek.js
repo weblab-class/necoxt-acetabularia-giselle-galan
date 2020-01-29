@@ -67,7 +67,7 @@ class OverviewSeek extends Component {
           />
 
           <div className="title">map title here</div>
-          <div className="subtitle">{this.state.data.creator_name} has hidden a treasure for you.</div>
+          <div className="subtitle">{this.state.data.creator_name} has hidden a cool treasure...</div>
 
           <div className="box">
             <div>

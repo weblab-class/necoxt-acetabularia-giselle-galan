@@ -39,7 +39,7 @@ class StepCardSeek extends Component {
   handleSubmit = () => {
     if (this.state.stepData.answer.toLowerCase() == this.state.userInput.toLowerCase()) {
       if (this.state.lastStep) {
-        alert("you found treasure!");
+        alert('you found treasure! you found "' + this.props.treasure_is + '"!');
         navigate("/maps");
       }
       else {
